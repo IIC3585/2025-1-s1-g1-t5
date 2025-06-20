@@ -1,0 +1,38 @@
+---
+// src/components/DebugToggle.astro
+const initialValue = typeof document !== 'undefined' 
+  ? document.documentElement.getAttribute('data-highlight') === 'true'
+  : false;
+---
+
+<div class="fixed bottom-4 right-4 z-50 flex items-center gap-2">
+  <button
+    id="toggle-highlight"
+    class={`text-sm px-3 py-2 rounded-md shadow-sm font-medium ${initialValue ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'} text-white transition-colors`}
+    aria-label="Toggle island debug"
+  >
+    {initialValue ? 'Ocultar islas' : 'Mostrar islas'}
+  </button>
+</div>
+
+<script is:inline>
+  document.getElementById('toggle-highlight').addEventListener('click', () => {
+    const html = document.documentElement;
+    const currentValue = html.getAttribute('data-highlight') === 'true';
+    const newValue = !currentValue;
+    
+    // Actualizar atributo en el HTML
+    html.setAttribute('data-highlight', newValue);
+    
+    
+    // Actualizar botón
+    const button = document.getElementById('toggle-highlight');
+    button.textContent = newValue ? 'Ocultar islas' : 'Mostrar islas';
+    
+    // Cambiar clases de Tailwind
+    button.classList.toggle('bg-green-500', !newValue);
+    button.classList.toggle('hover:bg-green-600', !newValue);
+    button.classList.toggle('bg-red-500', newValue);
+    button.classList.toggle('hover:bg-red-600', newValue);
+  });
+</script>

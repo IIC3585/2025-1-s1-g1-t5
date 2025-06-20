@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/* Approach principal: usar outline y pseudo-elementos sin cambiar position */
+html[data-highlight="true"] .debug-islands [data-island] {
+  outline: 1px dashed rgb(255, 200, 0);
+  outline-offset: 1px;
+}
+/* Para elementos que necesitan position: relative para los badges */
+html[data-highlight="true"]
+  .debug-islands
+  [data-island]:not([class*="fixed"]):not([class*="absolute"]):not(
+    [class*="sticky"]
+  ) {
+  position: relative;
+}
+
+/* Badge para el nombre de la isla */
+html[data-highlight="true"] .debug-islands [data-island]::after {
+  content: attr(data-island);
+  position: fixed;
+  top: var(--badge-top, 0);
+  left: var(--badge-left, 0);
+  font-size: 0.7rem;
+  font-family: monospace;
+  background: #4f46e5;
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  line-height: 1;
+  z-index: 9999; 
+  font-weight: 500;
+  pointer-events: none;
+  transform: translate(4px, 4px); 
+}
+
+/* Badge para el framework */
+html[data-highlight="true"]
+  .debug-islands
+  [data-island][data-framework]::before {
+  content: attr(data-framework);
+  position: fixed; 
+  top: var(--badge-top, 0);
+  right: var(--badge-right, 0);
+  font-size: 0.65rem;
+  font-family: monospace;
+  background: #059669;
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  line-height: 1;
+  z-index: 9999;
+  font-weight: 500;
+  text-transform: uppercase;
+  pointer-events: none;
+  transform: translate(-4px, 4px); 
+}
+
+/* Solución alternativa más simple: badges externos flotantes */
+html[data-highlight="true"] .debug-islands [data-island].simple-debug::after {
+  content: attr(data-island) " [" attr(data-framework) "]";
+  position: absolute;
+  top: -1.5rem;
+  left: 0;
+  font-size: 0.7rem;
+  font-family: monospace;
+  background: linear-gradient(90deg, #4f46e5 60%, #059669 60%);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px 4px 0 0;
+  line-height: 1;
+  z-index: 1000;
+  font-weight: 500;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Ocultar badges individuales cuando se usa simple-debug */
+html[data-highlight="true"] .debug-islands [data-island].simple-debug::before {
+  display: none;
+}
+
+/* Para elementos con position: relative, usar posicionamiento absoluto normal */
+html[data-highlight="true"]
+  .debug-islands
+  [data-island]:not([class*="fixed"]):not([class*="absolute"]):not(
+    [class*="sticky"]
+  )::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transform: none;
+}
+
+html[data-highlight="true"]
+  .debug-islands
+  [data-island]:not([class*="fixed"]):not([class*="absolute"]):not(
+    [class*="sticky"]
+  )::before {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  transform: none;
+}
+
+/* Contenedor específico para contenido Markdown */
+.markdown-content {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Resetear estilos que podrían afectar el Markdown */
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* Efecto glass base */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Variaciones de color para el efecto glass */
+.glass-dark {
+  background: rgba(18, 18, 18, 0.7);
+}
+
+.glass-purple {
+  background: rgba(109, 40, 217, 0.15);
+}
+
+.glass-blue {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+/* Efecto hover para interactividad */
+.glass-effect:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.glass-effect {
+  transition: all 0.3s ease;
+}
+
+button, a {
+  transition: all 0.2s ease;
+}
+
+.glow-effect {
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
+}
