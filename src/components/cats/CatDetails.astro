@@ -1,0 +1,207 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import CatReactions from '../../components/cats/CatReactions';
+import RelatedCats from '../../components/cats/RelatedCats.svelte';
+
+export async function getStaticPaths() {
+  const cats = await getCollection('cats');
+  return cats.map((cat) => ({
+    params: { id: cat.id },
+    props: { cat, allCats: cats },
+  }));
+}
+
+const { cat, allCats } = Astro.props;
+const isGif = cat.data.url.includes('.gif');
+
+// Obtener gatos relacionados (mismas dimensiones aproximadas o mismo tipo)
+const relatedCats = allCats
+  .filter(c => c.id !== cat.id)
+  .filter(c => {
+    const isSameType = (c.data.url.includes('.gif')) === isGif;
+    const similarSize = Math.abs(c.data.width - cat.data.width) < 200 && 
+                       Math.abs(c.data.height - cat.data.height) < 200;
+    return isSameType || similarSize;
+  })
+  .slice(0, 6);
+
+---
+
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        
+        <nav class="mb-8">
+        <div class="flex items-center justify-between">
+            <a href="/gallery" class="glass-effect glass-dark px-4 py-2 rounded-lg text-purple-300 hover:text-white transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Volver a la galería
+            </a>
+            <div class="text-sm text-gray-400">
+                Página {allCats.findIndex(c => c.id === cat.id) + 1} de {allCats.length}
+            </div>
+        </div>
+        </nav>
+
+        <div class="grid lg:grid-cols-3 gap-8 mb-12">
+        
+            <div class="lg:col-span-2">
+                <div class="glass-effect glass-dark rounded-2xl overflow-hidden hover:glow-effect transition-all duration-300">
+                <div class="relative">
+                    <img 
+                    src={cat.data.url} 
+                    alt={`Gato ${cat.id}`}
+                    class="w-full h-auto max-h-[600px] object-contain bg-gray-900"
+                    loading="eager"
+                    />
+                    {isGif && (
+                    <div class="absolute top-4 right-4 glass-effect glass-yellow px-3 py-1 rounded-full text-sm font-medium text-yellow-200 border border-yellow-300/30 animate-pulse">
+                        GIF
+                    </div>
+                    )}
+                    <div class="absolute bottom-4 left-4 glass-effect glass-purple px-3 py-1 rounded-full text-sm font-medium text-purple-200 border border-purple-300/30">
+                    #{cat.id}
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="glass-effect glass-purple p-6 rounded-2xl">
+                <h1 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+                    🐱 Gato {cat.id}
+                </h1>
+                
+                <div class="space-y-4">
+                    <div class="glass-effect glass-dark p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                        📐 Dimensiones
+                    </h3>
+                    <p class="text-white text-lg">{cat.data.width} × {cat.data.height} px</p>
+                    <p class="text-gray-400 text-sm">
+                        Ratio: {(cat.data.width / cat.data.height).toFixed(2)}:1
+                    </p>
+                    </div>
+                    
+                    <div class="glass-effect glass-dark p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                        🎨 Tipo de archivo
+                    </h3>
+                    <div class="flex items-center gap-2">
+                        <span class={`px-3 py-1 rounded-full text-sm font-medium ${
+                        isGif 
+                            ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-400/30' 
+                            : 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
+                        }`}>
+                        {isGif ? 'GIF' : 'Imagen'}
+                        </span>
+                    </div>
+                    </div>
+
+                    <div class="glass-effect glass-dark p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                        📊 Estadísticas
+                    </h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                        <span class="text-gray-400">Orientación:</span>
+                        <span class="text-white">
+                            {cat.data.width > cat.data.height ? 'Horizontal' : 
+                            cat.data.width < cat.data.height ? 'Vertical' : 'Cuadrada'}
+                        </span>
+                        </div>
+                        <div class="flex justify-between">
+                        <span class="text-gray-400">Resolución:</span>
+                        <span class="text-white">
+                            {cat.data.width * cat.data.height > 1000000 ? 'Alta' : 
+                            cat.data.width * cat.data.height > 300000 ? 'Media' : 'Baja'}
+                        </span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                
+                <!-- Acciones -->
+                <div class="space-y-3">
+                <a 
+                    href={cat.data.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="block w-full glass-effect glass-blue text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
+                >
+                    🔗 Ver imagen original
+                </a>
+                
+                <button 
+                    onclick="if(navigator.share) navigator.share({title: 'Mira este gato adorable', text: 'Página generada con Astro SSG', url: window.location.href}); else alert('Función de compartir no disponible');"
+                    class="block w-full glass-effect glass-pink text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
+                >
+                    📤 Compartir gato
+                </button>
+
+                <a 
+                    href="/random" 
+                    class="block w-full glass-effect glass-green text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
+                >
+                    🎲 Gato aleatorio
+                </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-12">
+            <div class="glass-effect glass-purple p-6 rounded-2xl">
+                <h2 class="text-2xl font-bold text-white mb-4 text-center">
+                💖 ¿Qué te parece este gato?
+                </h2>
+                <CatReactions catId={cat.id} client:load />
+            </div>
+        </div>
+
+        {relatedCats.length > 0 && (
+        <div class="mb-12">
+            <div class="glass-effect glass-blue p-6 rounded-2xl">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">
+                    🔗 Gatos relacionados
+                </h2>
+                <RelatedCats cats={relatedCats} client:visible />
+            </div>
+        </div>
+        )}
+
+        <div class="flex justify-between items-center mt-12">
+        {allCats.findIndex(c => c.id === cat.id) > 0 && (
+            <a 
+            href={`/cats/${allCats[allCats.findIndex(c => c.id === cat.id) - 1].id}`}
+            class="glass-effect glass-dark px-6 py-3 rounded-lg text-white hover:glow-effect transition-all flex items-center gap-2"
+            >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Anterior
+            </a>
+        )}
+        
+        <div class="text-center flex-1 mx-4 hidden sm:flex justify-center">
+            <span class="glass-effect glass-dark px-4 py-2 rounded-lg text-gray-300 text-sm">
+            Página generada estáticamente con Astro SSG
+            </span>
+        </div>
+
+        {allCats.findIndex(c => c.id === cat.id) < allCats.length - 1 && (
+            <a 
+            href={`/cats/${allCats[allCats.findIndex(c => c.id === cat.id) + 1].id}`}
+            class="glass-effect glass-dark px-6 py-3 rounded-lg text-white hover:glow-effect transition-all flex items-center gap-2"
+            >
+                Siguiente
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        )}
+        </div>
+    </div>
+</div>

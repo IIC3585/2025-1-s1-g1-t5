@@ -34,3 +34,29 @@
  * }
  * ```
  */
+import { defineCollection, z } from "astro:content";
+
+const apiURL = new URL(
+  import.meta.env.API_URL_CATS ?? "https://api.thecatapi.com/v1/images/search?limit=100"
+);
+
+const cats = defineCollection({
+  loader: async () => {
+    const response = await fetch(apiURL, {
+      method: "GET",
+      headers: {
+        "x-api-key": import.meta.env.API_KEY_CATS ?? "",
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
+  schema: z.object({
+    id: z.string(),
+    url: z.string(),
+    width: z.number(),
+    height: z.number(),
+  }),
+});
+
+export const collections = { cats };
