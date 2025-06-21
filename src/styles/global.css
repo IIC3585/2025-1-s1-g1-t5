@@ -137,6 +137,11 @@ html[data-highlight="true"]
   background: rgba(59, 130, 246, 0.15);
 }
 
+.glass-yellow {
+  background: rgba(251, 191, 36, 0.3);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
 /* Efecto hover para interactividad */
 .glass-effect:hover {
   background: rgba(255, 255, 255, 0.12);

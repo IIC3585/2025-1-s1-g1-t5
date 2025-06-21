@@ -1,0 +1,40 @@
+---
+export interface Props {
+  cats: any[];
+}
+
+const { cats } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {cats.map((cat) => (
+    <div class="glass-effect glass-dark hover:glass-purple group cursor-pointer transform hover:scale-105 transition-all duration-300 hover:glow-effect rounded-2xl overflow-hidden">
+      <a href={`/cats/${cat.id}`} class="block">
+        <div class="aspect-square overflow-hidden">
+          <img 
+            src={cat.data.url} 
+            alt={`Gato ${cat.id}`}
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-purple-200 transition-colors">
+            Gato #{cat.id}
+          </h3>
+          <p class="text-gray-400 mb-4">
+            {cat.data.width} x {cat.data.height} px
+          </p>
+          <div class="flex justify-between items-center">
+            <span class="glass-effect px-3 py-1 rounded-full text-sm text-purple-200 border border-purple-300/30">
+              {cat.data.url.includes('.gif') ? 'GIF' : 'IMG'}
+            </span>
+            <span class="text-purple-300 text-sm font-medium group-hover:text-white transition-colors">
+              Ver detalles →
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  ))}
+</div>
