@@ -1,4 +1,4 @@
-import rawMovies from "../data/peliculas.json";
+import rawMovies from "@/content/data/movies.json";
 
 export async function getMovies() {
   return rawMovies.map((movie) => {
