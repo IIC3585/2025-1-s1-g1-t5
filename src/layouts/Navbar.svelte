@@ -9,9 +9,9 @@
       description: 'Explora las directivas personalizadas.'
     },
     {
-      name: 'Collections',
-      path: '/collections',
-      description: 'Gestiona y visualiza colecciones.'
+      name: 'Movies',
+      path: '/movies',
+      description: 'Explora películas'
     },
     {
       name: 'DemoSSG',

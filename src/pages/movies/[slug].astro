@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import MovieDetails from '../../components/movies/MovieDetails.astro';
+
+export async function getStaticPaths() {
+  const movies = await getCollection('movies');
+  return movies.map((movie) => ({
+    params: { slug: movie.data.slug },
+    props: { movie },
+  }));
+}
+
+
+const { movie } = Astro.props;
+const data = movie.data;
+
+
+---
+
+<Layout title={`Pelicula ${data.title} - MoviesWorld`}>
+  <MovieDetails data={data} />
+</Layout>
+

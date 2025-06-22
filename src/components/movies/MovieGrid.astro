@@ -1,0 +1,34 @@
+---
+export interface Props {
+  movies: any[];
+}
+
+const { movies } = Astro.props;
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+  {movies.map((movie) => (
+    <div class="group cursor-pointer">
+      <a href={`/movies/${movie.data.slug}`} class="block">
+        <div class="glass-effect glass-dark hover:glass-purple transform group-hover:scale-105 transition-all duration-300 group-hover:glow-effect rounded-xl overflow-hidden">
+          <div class="aspect-[2/3] overflow-hidden relative bg-black">
+            <img 
+              src={movie.data.img_url} 
+              alt={`Poster de ${movie.data.title}`}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold text-white group-hover:text-purple-200 transition-colors truncate">
+              {movie.data.title}
+            </h3>
+            <p class="text-sm text-gray-400">
+              {movie.data.major_genre}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  ))}
+</div>
