@@ -1,0 +1,26 @@
+---
+// src/pages/movies/[slug].astro
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import MovieDetails from '../../components/movies/MovieDetails.astro';
+
+export async function getStaticPaths() {
+  const movies = await getCollection('movies');
+  return movies.map((movie) => ({
+    params: { slug: movie.data.slug },
+    props: { movie, allMovies: movies },
+  }));
+}
+
+const { movie, allMovies } = Astro.props;
+const data = movie.data;
+
+// Generar películas relacionadas (por género, diferente slug)
+const relatedMovies = allMovies
+  .filter((m) => m.data.slug !== data.slug && m.data.major_genre === data.major_genre)
+  .slice(0, 6);
+---
+
+<Layout title={`Pelicula ${data.title} - MoviesWorld`}>
+  <MovieDetails data={data} relatedMovies={relatedMovies} />
+</Layout>
