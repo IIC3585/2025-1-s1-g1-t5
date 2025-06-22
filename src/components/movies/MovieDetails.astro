@@ -11,11 +11,13 @@ export interface Props {
     imdb_rating: number;
     imdb_votes: number;
   };
+  relatedMovies?: any[]; // 🔥 Añadido
 }
 
 import MovieRating from './MovieRating.svelte';
+import RelatedMovies from './RelatedMovies.svelte'; // 🔥 Añadido
 
-const { data } = Astro.props;
+const { data, relatedMovies = [] } = Astro.props;
 ---
 
 <div class="grid lg:grid-cols-3 gap-8 mb-12">
@@ -44,7 +46,6 @@ const { data } = Astro.props;
       </h1>
 
       <div class="space-y-4">
-
         <div class="glass-effect glass-dark p-4 rounded-lg">
           <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
             💰 Presupuesto
@@ -81,18 +82,11 @@ const { data } = Astro.props;
           </h3>
           <MovieRating client:visible rating={data.imdb_rating} votes={data.imdb_votes} />
         </div>
-
       </div>
     </div>
 
     <!-- Acciones -->
     <div class="space-y-3">
-      <a 
-        href="#"
-        class="block w-full glass-effect glass-blue text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
-      >
-        🔗 Ver tráiler (pendiente)
-      </a>
       <a 
         href="/movies"
         class="block w-full glass-effect glass-green text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
@@ -102,3 +96,15 @@ const { data } = Astro.props;
     </div>
   </div>
 </div>
+
+{relatedMovies.length > 0 && (
+  <div class="mt-12">
+    <div class="glass-effect glass-blue p-6 rounded-2xl">
+      <h2 class="text-2xl font-bold text-white mb-6 text-center">
+        🎥 Películas relacionadas
+      </h2>
+      <RelatedMovies movies={relatedMovies} client:visible />
+    </div>
+  </div>
+)}
+
