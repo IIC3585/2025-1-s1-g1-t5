@@ -11,12 +11,12 @@
     {
       name: 'Movies',
       path: '/movies',
-      description: 'Explora películas'
+      description: 'Explora películas.'
     },
     {
-      name: 'DemoSSG',
-      path: '/demo',
-      description: 'Demostraciones.'
+      name: 'Cats',
+      path: '/cats',
+      description: 'Explora gatos.'
     }
   ];
 

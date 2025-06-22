@@ -1,8 +1,7 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import CatReactions from '../../components/cats/CatReactions';
-import RelatedCats from '../../components/cats/RelatedCats.svelte';
+import CatReactions from '@/components/cats/CatReactions';
+import RelatedCats from '@/components/cats/RelatedCats.svelte';
 
 export async function getStaticPaths() {
   const cats = await getCollection('cats');
@@ -33,7 +32,7 @@ const relatedCats = allCats
         
         <nav class="mb-8">
         <div class="flex items-center justify-between">
-            <a href="/gallery" class="glass-effect glass-dark px-4 py-2 rounded-lg text-purple-300 hover:text-white transition-colors flex items-center gap-2">
+            <a href="/cats/gallery" class="glass-effect glass-dark px-4 py-2 rounded-lg text-purple-300 hover:text-white transition-colors flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
@@ -143,7 +142,7 @@ const relatedCats = allCats
                 </button>
 
                 <a 
-                    href="/random" 
+                    href="/cats/random" 
                     class="block w-full glass-effect glass-green text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
                 >
                     🎲 Gato aleatorio

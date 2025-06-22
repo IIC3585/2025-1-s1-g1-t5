@@ -8,13 +8,13 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = "Una colección adorable de gatos - Astro SSG + Content Collections" } = Astro.props;
+const { title, description = "Astro Demo" } = Astro.props;
 ---
 <!doctype html>
 <html lang="es" data-highlight="false">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Aprende Astro: Collections, SSG, Directivas e Islas" />
+    <meta name={description} content="Aprende Astro: Collections, SSG, Directivas e Islas" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />

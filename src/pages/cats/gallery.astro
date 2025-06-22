@@ -1,7 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import CatGrid from '../components/cats/CatGrid.astro';
+import CatGrid from '@/components/cats/CatGrid.astro';
 
 const cats = await getCollection('cats');
 ---

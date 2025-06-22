@@ -1,9 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import CatHero from '../components/cats/CatHero.astro';
-import FeaturedCats from '../components/cats/FeaturedCats.astro';
-import FeaturedMovies from '../components/movies/FeaturedMovies.astro';
+import FeaturedMovies from '@/components/movies/FeaturedMovies.astro';
 
 const movies = await getCollection('movies');
 const featuredMovies = movies.slice(0, 6);
@@ -25,7 +23,7 @@ const featuredMovies = movies.slice(0, 6);
     
     <div class="text-center mt-12">
       <a 
-        href="/moviesGallery" 
+        href="/movies/gallery" 
         class="inline-block glass-effect glass-blue px-8 py-4 rounded-full font-semibold text-white hover:glow-effect transition-all transform hover:scale-105"
       >
         Ver Galería Completa ({movies.length} películas)
