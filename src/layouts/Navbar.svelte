@@ -4,8 +4,8 @@
   
   const navItems = [
     {
-      name: 'Islands',
-      path: '/islands',
+      name: 'Intro',
+      path: '/intro',
       description: 'Explora las directivas personalizadas.'
     },
     {
@@ -25,7 +25,7 @@
   };
 </script>
 
-<nav class={`bg-purple/30 backdrop-blur-md shadow-sm w-full ${className} `} data-island="Navbar" data-framework="svelte">
+<nav class={` z-50 bg-purple/30 backdrop-blur-md shadow-sm w-full ${className} `} data-island="Navbar" data-framework="svelte">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
