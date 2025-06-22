@@ -1,8 +1,8 @@
 ---
 // src/pages/movies/[slug].astro
-import Layout from '../../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import MovieDetails from '../../components/movies/MovieDetails.astro';
+import MovieDetails from '@/components/movies/MovieDetails.astro';
 
 export async function getStaticPaths() {
   const movies = await getCollection('movies');
