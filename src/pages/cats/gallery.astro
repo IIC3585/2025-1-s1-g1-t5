@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 import CatGrid from '@/components/cats/CatGrid.astro';
 
 const cats = await getCollection('cats');
+
+export const prerender = true;
 ---
 
 <Layout title="Galería SSG - CatWorld" description={`Galería estática generada con ${cats.length} gatos usando Astro Content Collections`}>

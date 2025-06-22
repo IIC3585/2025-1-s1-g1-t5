@@ -19,6 +19,8 @@ const data = movie.data;
 const relatedMovies = allMovies
   .filter((m) => m.data.slug !== data.slug && m.data.major_genre === data.major_genre)
   .slice(0, 6);
+
+export const prerender = true;
 ---
 
 <Layout title={`Pelicula ${data.title} - MoviesWorld`}>
