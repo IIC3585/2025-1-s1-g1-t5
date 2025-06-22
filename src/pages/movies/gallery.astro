@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 import MoviesGrid from '@/components/movies/MovieGrid.astro';
 
 const movies = await getCollection('movies');
+
+export const prerender = true;
 ---
 
 <Layout title="Galería de Películas - MoviesWorld" description="Explora nuestra colección de películas destacadas">

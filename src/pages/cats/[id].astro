@@ -13,6 +13,8 @@ export async function getStaticPaths() {
 
 const cats = await getCollection('cats');
 const { cat } = Astro.props;
+
+export const prerender = true;
 ---
 
 <Layout title={`Gato ${cat.id} - CatWorld`}>
