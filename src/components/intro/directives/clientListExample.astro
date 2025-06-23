@@ -4,226 +4,281 @@ import ConsoleLine from "@/components/consoleLine.astro";
 import { Code } from "astro:components";
 import { Eye, EyeOff } from '@lucide/astro';
 
-
 // Estado inicial para el ejemplo
 const initialState = {
   isActive: true,
   hasError: false,
-  size: "medium",
+  size: "small",
 };
 ---
 
-<section
-  class="flex-col items-center justify-center w-full mt-16"
->
-    <div class="text-center w-full">
-      <h1 class="text-3xl font-bold text-white">Ejemplo de directiva</h1>
-      <p class="text-indigo-300 mt-2">Ejemplo Interactivo de class:list</p>
-      <p class="text-gray-400 text-sm">
-        Cambia los controles para ver cómo class:list genera las clases CSS
-        dinámicamente
+<section class="w-full mt-8 sm:mt-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header Section -->
+    <div class="text-center mb-8 sm:mb-12">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
+        Ejemplo de Directiva class:list
+      </h1>
+      <p class="text-indigo-300 text-lg sm:text-xl mb-2">
+        Ejemplo Interactivo de class:list
+      </p>
+      <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+        Cambia los controles para ver cómo class:list genera las clases CSS dinámicamente
       </p>
     </div>
-    <div class="flex items-center justify-center mt-8">
-      <div class="space-y-4">
-        <div class="flex flex-wrap gap-4 items-center">
-          <label
-            class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10 hover:border-indigo-400 transition"
-          >
-            <input
-              type="checkbox"
-              id="isActive"
-              checked={initialState.isActive}
-              class="accent-indigo-500 bg-transparent border-gray-500 rounded focus:ring-2 focus:ring-indigo-400"
-            />
-            <span class="text-sm text-gray-200">Activo</span>
-          </label>
 
-          <label
-            class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10 hover:border-red-400 transition"
-          >
-            <input
-              type="checkbox"
-              id="hasError"
-              checked={initialState.hasError}
-              class="accent-red-500 bg-transparent border-gray-500 rounded focus:ring-2 focus:ring-red-400"
-            />
-            <span class="text-sm text-gray-200">Error</span>
-          </label>
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+      
+      <!-- Controls Panel -->
+      <div class="order-2 lg:order-1">
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10">
+          <h2 class="text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6">
+            Controles Interactivos
+          </h2>
+          
+          <!-- Control Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6">
+            <!-- Checkbox Activo -->
+            <label class="flex items-center gap-3 bg-white/5 px-3 sm:px-4 py-3 rounded-xl backdrop-blur-sm border border-white/10 hover:border-indigo-400 transition-all duration-200 cursor-pointer">
+              <input
+                type="checkbox"
+                id="isActive"
+                checked={initialState.isActive}
+                class="w-4 h-4 accent-indigo-500 bg-transparent border-gray-500 rounded focus:ring-2 focus:ring-indigo-400"
+              />
+              <span class="text-sm sm:text-base text-gray-200 font-medium">Activo</span>
+            </label>
 
-          <div
-            class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10 hover:border-indigo-400 transition"
-          >
-            <label class="text-sm font-medium text-gray-200 mb-0" for="size"
-              >Tamaño</label
-            >
-            <select
-              id="size"
-              value={initialState.size}
-              class="bg-transparent border-none text-sm text-white focus:ring-0 focus:outline-none"
-            >
-              <option value="small" class="bg-gray-800 text-white"
-                >Pequeño</option
+            <!-- Checkbox Error -->
+            <label class="flex items-center gap-3 bg-white/5 px-3 sm:px-4 py-3 rounded-xl backdrop-blur-sm border border-white/10 hover:border-red-400 transition-all duration-200 cursor-pointer">
+              <input
+                type="checkbox"
+                id="hasError"
+                checked={initialState.hasError}
+                class="w-4 h-4 accent-red-500 bg-transparent border-gray-500 rounded focus:ring-2 focus:ring-red-400"
+              />
+              <span class="text-sm sm:text-base text-gray-200 font-medium">Error</span>
+            </label>
+
+            <!-- Select Tamaño -->
+            <div class="sm:col-span-2 bg-white/5 px-3 sm:px-4 py-3 rounded-xl backdrop-blur-sm border border-white/10 hover:border-indigo-400 transition-all duration-200">
+              <label class="block text-sm font-medium text-gray-200 mb-2" for="size">
+                Tamaño del Botón
+              </label>
+              <select
+                id="size"
+                value={initialState.size}
+                class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm sm:text-base text-white focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all"
               >
-              <option value="medium" class="bg-gray-800 text-white"
-                >Mediano</option
-              >
-              <option value="large" class="bg-gray-800 text-white"
-                >Grande</option
-              >
-            </select>
+                <option value="small" class="bg-gray-800 text-white">Pequeño</option>
+                <option value="medium" class="bg-gray-800 text-white">Mediano</option>
+                <option value="large" class="bg-gray-800 text-white">Grande</option>
+              </select>
+            </div>
           </div>
+
+          <!-- Preview Button -->
+          <div class="mb-6">
+            <h3 class="text-sm font-medium text-gray-300 mb-3">Vista Previa:</h3>
+            <div class="flex justify-center p-4 bg-white/5 rounded-xl border border-white/10">
+              <button
+                id="dynamicButton"
+                class:list={[
+                  "btn",
+                  "transition-all",
+                  "duration-200",
+                  "rounded-md",
+                  "font-medium",
+                  "focus:outline-none",
+                  "focus:ring-2",
+                  "focus:ring-offset-2",
+                  "focus:ring-offset-gray-800",
+                  initialState.isActive && !initialState.hasError
+                    ? "bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500"
+                    : "",
+                  initialState.hasError 
+                    ? "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500" 
+                    : "",
+                  !initialState.isActive && !initialState.hasError
+                    ? "bg-gray-300 text-gray-600 hover:bg-gray-400 cursor-not-allowed"
+                    : "",
+                  initialState.size === "small" ? "px-3 py-1.5 text-sm" : "",
+                  initialState.size === "medium" ? "px-4 py-2 text-base" : "",
+                  initialState.size === "large" ? "px-6 py-3 text-lg" : "",
+                ]}
+              >
+                Botón Dinámico
+              </button>
+            </div>
+          </div>
+
+          <!-- Show Code Button -->
           <button
-            id="dynamicButton"
-            class:list={[
-              "btn",
-              "transition-all",
-              "duration-200",
-              "rounded-md",
-              initialState.isActive && !initialState.hasError
-                ? "bg-blue-500 text-white"
-                : "",
-              initialState.hasError ? "bg-red-500 text-white" : "",
-              !initialState.isActive && !initialState.hasError
-                ? "bg-gray-300 text-gray-600"
-                : "",
-              initialState.size === "small" ? "px-2 py-1 text-sm" : "",
-              initialState.size === "medium" ? "px-4 py-2" : "",
-              initialState.size === "large" ? "px-6 py-3 text-lg" : "",
-            ]}
-          >
-            Botón Dinámico
-          </button>
-        </div>
-        <div class="pt-4">
-            <button
             id="showCodeButton"
-            class="w-full px-3 py-2 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition flex items-center justify-center gap-2"
+            class="w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg"
             type="button"
             aria-label="Ver código"
-            >
-            <!-- Ícono de ojo SVG -->
+          >
             <Eye />
-            <span>Ver código</span>
-            </button>
+            <span>Ver código generado</span>
+          </button>
         </div>
       </div>
 
-      <div class="rounded-lg overflow-hidden">
-        <div id="codeContainer" style="display:none;">
-          <Console
+      <!-- Code Display -->
+      <div class="order-1 lg:order-2">
+        <div id="codeContainer" class="hidden">
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10 mb-4">
+            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+              Estado Actual
+            </h3>
+            <Console title="Variables de Estado">
+              <ConsoleLine color="text-gray-400">// Estado actual de las variables</ConsoleLine>
+              <ConsoleLine id="active_line" color="text-blue-300">const isActive = {initialState.isActive};</ConsoleLine>
+              <ConsoleLine id="error_line" color="text-red-300">const hasError = {initialState.hasError};</ConsoleLine>
+              <ConsoleLine id="size_line" color="text-yellow-300">const size = "{initialState.size}";</ConsoleLine>
+            </Console>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10">
+            <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></span>
+              Código class:list
+            </h3>
+            <Console
             title="Código generado">
-          <ConsoleLine> ---</ConsoleLine>
-          <ConsoleLine id="active_line"> const isActive = {initialState.isActive};</ConsoleLine>
-          <ConsoleLine id="error_line"> const hasError = {initialState.hasError};</ConsoleLine>
-          <ConsoleLine id="size_line"> const size = "{initialState.size}";</ConsoleLine>
-          <ConsoleLine> ---</ConsoleLine>
-          </pre>
           <Code
             id="dynamicCodeBlock"
-            code={`
-  <button class:list={[
-    'btn',
-    'transition-all',
-    'duration-200',
-    'rounded-md',
-    {
-    'bg-blue-500 text-white': isActive && !hasError,
-    'bg-red-500 text-white': hasError,
-    'bg-gray-300 text-gray-600': !isActive && !hasError,
-    'px-2 py-1 text-sm': size === 'small',
-    'px-4 py-2': size === 'medium',
-    'px-6 py-3 text-lg': size === 'large'
-    }
-  ]}>
-    Botón Dinámico
-  </button>`}
+            code={`<button class:list={[
+  'btn',
+  'transition-all',
+  'duration-200',
+  'rounded-md',
+  {
+  'bg-blue-500 text-white': isActive && !hasError,
+  'bg-red-500 text-white': hasError,
+  'bg-gray-300 text-gray-600': !isActive && !hasError,
+  'px-2 py-1 text-sm': size === 'small',
+  'px-4 py-2': size === 'medium',
+  'px-6 py-3 text-lg': size === 'large'
+  }
+]}>
+  Botón Dinámico
+</button>`}
             lang="ts"
             style="background:transparent;"
           />
           </Console>
+          </div>
         </div>
 
+        <!-- Placeholder when code is hidden -->
+        <div id="codePlaceholder" class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 text-center">
+          <div class="text-gray-400 mb-4">
+            <Eye class="w-12 h-12 mx-auto mb-3 opacity-50" />
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            Código Oculto
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Haz clic en "Ver código generado" para mostrar cómo class:list construye las clases CSS dinámicamente
+          </p>
+        </div>
       </div>
     </div>
+  </div>
 </section>
 
 <script is:inline>
   let isActive = true;
   let hasError = false;
-  let size = "medium";
+  let size = "small";
 
   // Referencias a elementos
   const isActiveCheckbox = document.getElementById("isActive");
   const hasErrorCheckbox = document.getElementById("hasError");
   const sizeSelect = document.getElementById("size");
   const dynamicButton = document.getElementById("dynamicButton");
-  const copyButton = document.getElementById("copyButton");
   const showCodeButton = document.getElementById("showCodeButton");
   const codeContainer = document.getElementById("codeContainer");
+  const codePlaceholder = document.getElementById("codePlaceholder");
   const activeLine = document.getElementById("active_line");
-    const errorLine = document.getElementById("error_line");
-    const sizeLine = document.getElementById("size_line");
+  const errorLine = document.getElementById("error_line");
+  const sizeLine = document.getElementById("size_line");
   
   // Mostrar/ocultar código con icono dinámico
   showCodeButton.addEventListener("click", () => {
     const eyeIcon = showCodeButton.querySelector("svg");
     const labelSpan = showCodeButton.querySelector("span");
-    if (codeContainer.style.display === "none") {
-      codeContainer.style.display = "block";
-      // Cambiar a ícono de "ojo tachado"
-      eyeIcon.innerHTML = `
-        <Eye />
-      `;
+    
+    if (codeContainer.classList.contains("hidden")) {
+      codeContainer.classList.remove("hidden");
+      codePlaceholder.classList.add("hidden");
+      
+      // Cambiar a ícono de "ojo tachado" y texto
+      eyeIcon.outerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>';
       labelSpan.textContent = "Ocultar código";
     } else {
-      codeContainer.style.display = "none";
-      // Cambiar a ícono de "ojo abierto"
-      eyeIcon.innerHTML = `
-        <EyeOff />
-      `;
-      labelSpan.textContent = "Ver código";
+      codeContainer.classList.add("hidden");
+      codePlaceholder.classList.remove("hidden");
+      
+      // Cambiar a ícono de "ojo abierto" y texto
+      eyeIcon.outerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>';
+      labelSpan.textContent = "Ver código generado";
     }
   });
 
   function updateButton() {
-    dynamicButton.className = "btn transition-all duration-200 rounded-md";
+    // Reset classes
+    dynamicButton.className = "btn transition-all duration-200 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800";
 
+    // Estado y error
     if (isActive && !hasError) {
-      dynamicButton.classList.add("bg-blue-500", "text-white");
+      dynamicButton.classList.add("bg-blue-500", "text-white", "hover:bg-blue-600", "focus:ring-blue-500");
     } else if (hasError) {
-      dynamicButton.classList.add("bg-red-500", "text-white");
+      dynamicButton.classList.add("bg-red-500", "text-white", "hover:bg-red-600", "focus:ring-red-500");
     } else if (!isActive && !hasError) {
-      dynamicButton.classList.add("bg-gray-300", "text-gray-600");
+      dynamicButton.classList.add("bg-gray-300", "text-gray-600", "hover:bg-gray-400", "cursor-not-allowed");
     }
 
+    // Tamaño
     if (size === "small") {
-      dynamicButton.classList.add("px-2", "py-1", "text-sm");
+      dynamicButton.classList.add("px-3", "py-1.5", "text-sm");
     } else if (size === "medium") {
-      dynamicButton.classList.add("px-4", "py-2");
+      dynamicButton.classList.add("px-4", "py-2", "text-base");
     } else if (size === "large") {
       dynamicButton.classList.add("px-6", "py-3", "text-lg");
     }
   }
 
+  function updateCodeLines() {
+    if (activeLine) activeLine.innerHTML = `<span class="text-blue-300">const isActive = ${isActive};</span>`;
+    if (errorLine) errorLine.innerHTML = `<span class="text-red-300">const hasError = ${hasError};</span>`;
+    if (sizeLine) sizeLine.innerHTML = `<span class="text-yellow-300">const size = "${size}";</span>`;
+  }
 
+  // Event listeners
   isActiveCheckbox.addEventListener("change", (e) => {
     isActive = e.target.checked;
-    activeLine.textContent = ` const isActive = ${isActive};`;
     updateButton();
+    updateCodeLines();
   });
 
   hasErrorCheckbox.addEventListener("change", (e) => {
     hasError = e.target.checked;
-    errorLine.textContent = ` const hasError = ${hasError};`;
     updateButton();
+    updateCodeLines();
   });
 
   sizeSelect.addEventListener("change", (e) => {
     size = e.target.value;
-    sizeLine.textContent = ` const size = "${size}";`;
     updateButton();
+    updateCodeLines();
   });
 
+  // Inicializar
   updateButton();
+  updateCodeLines();
 </script>

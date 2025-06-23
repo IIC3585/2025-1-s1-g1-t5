@@ -1,74 +1,19 @@
 ---
-import { Book, Database, Zap, FileText, Code, Globe, Clock, Layers, CheckCircle, AlertCircle } from '@lucide/astro';
-
-interface Tab {
-  id: string;
-  label: string;
-  icon: any;
-}
-
-interface UseCase {
-  scenario: string;
-  description: string;
-  icon: any;
-  recommended: boolean;
-}
-
-interface Alternative {
-  name: string;
-  when: string;
-  pros: string[];
-  cons: string[];
-}
-
-const tabs: Tab[] = [
-  { id: 'what', label: '¿Qué son?', icon: Book },
-  { id: 'when', label: '¿Cuándo usar?', icon: CheckCircle },
-  { id: 'how', label: '¿Cómo implementar?', icon: Code },
-  { id: 'alternatives', label: 'Alternativas', icon: AlertCircle }
-];
-
-const whenToUse: UseCase[] = [
-  {
-    scenario: "Blog o documentación",
-    description: "Perfecto para contenido markdown con metadatos estructurados",
-    icon: FileText,
-    recommended: true
-  },
-  {
-    scenario: "Portfolio de proyectos",
-    description: "Organiza proyectos con imágenes, tecnologías y descripciones",
-    icon: Layers,
-    recommended: true
-  },
-  {
-    scenario: "Contenido desde CMS (Content Management System)",
-    description: "Con loaders puedes conectar Contentful, Strapi, etc.",
-    icon: Database,
-    recommended: true
-  },
-  {
-    scenario: "Páginas simples estáticas",
-    description: "Para pocas páginas sin estructura, usa páginas normales",
-    icon: Globe,
-    recommended: false
-  }
-];
-
-const alternatives: Alternative[] = [
-  {
-    name: "Páginas .astro normales",
-    when: "Contenido simple sin estructura repetitiva",
-    pros: ["Más directo", "Sin configuración extra"],
-    cons: ["Sin validación de tipos", "Difícil de escalar"]
-  },
-  {
-    name: "Live Collections o SSR",
-    when: "Datos dinámicos o contenido que cambia frecuentemente",
-    pros: ["Flexibilidad total", "Datos en tiempo real"],
-    cons: ["Más complejidad", "Feature experimental"]
-  }
-];
+import Console from "@/components/console.astro";
+import ConsoleLine from "@/components/consoleLine.astro";
+import { Code } from "astro:components";
+import { 
+  Book, 
+  Database, 
+  Zap, 
+  FileText, 
+  Code as CodeIcon, 
+  Globe, 
+  Clock, 
+  Layers, 
+  CheckCircle, 
+  AlertCircle 
+} from '@lucide/astro';
 
 const codeExamples = {
   schema: `// src/content/config.ts
@@ -92,7 +37,7 @@ const blogCollection = defineCollection({
 export const collections = {
   'blog': blogCollection,
 };`,
-  
+    
   usage: `---
 // En tu página .astro
 import { getCollection } from 'astro:content';
@@ -153,76 +98,103 @@ const newsCollection = defineCollection({
   }),
 });`
 };
----
-<style is:global>
-  /* Estilos para el sistema de tabs sin JavaScript */
-  .tab-content > div {
-    display: none;
-  }
-  
-  input[type="radio"]:checked ~ .tab-content div[data-tab-content] {
-    display: block;
-  }
-  
-  /* Estilo para el tab activo */
-  input[type="radio"]:checked + label {
-    background-color: rgb(79 70 229);
-    color: white;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  }
-</style>
 
-<div class="max-w-6xl mx-auto" data-framework="astro">
-  <div class="text-center mb-12">
-    <div class="inline-flex items-center gap-3 bg-indigo-600/20 rounded-full px-6 py-3 mb-6">
-      <Database class="w-6 h-6 text-indigo-400" />
-      <span class="text-white font-semibold text-lg">Content Collections</span>
-      <span class="bg-indigo-500/30 text-indigo-200 px-2 py-1 rounded text-sm">
+const whenToUse = [
+  {
+    scenario: "Blog o documentación",
+    description: "Perfecto para contenido markdown con metadatos estructurados",
+    icon: FileText,
+    recommended: true
+  },
+  {
+    scenario: "Portfolio de proyectos",
+    description: "Organiza proyectos con imágenes, tecnologías y descripciones",
+    icon: Layers,
+    recommended: true
+  },
+  {
+    scenario: "Contenido desde CMS",
+    description: "Con loaders puedes conectar Contentful, Strapi, etc.",
+    icon: Database,
+    recommended: true
+  },
+  {
+    scenario: "Páginas simples estáticas",
+    description: "Para pocas páginas sin estructura, usa páginas normales",
+    icon: Globe,
+    recommended: false
+  }
+];
+
+const alternatives = [
+  {
+    name: "Páginas .astro normales",
+    when: "Contenido simple sin estructura repetitiva",
+    pros: ["Más directo", "Sin configuración extra"],
+    cons: ["Sin validación de tipos", "Difícil de escalar"]
+  },
+  {
+    name: "Live Collections o SSR",
+    when: "Datos dinámicos o contenido que cambia frecuentemente",
+    pros: ["Flexibilidad total", "Datos en tiempo real"],
+    cons: ["Más complejidad", "Feature experimental"]
+  }
+];
+
+const tabs = [
+  { id: 'what', label: '¿Qué son?', icon: Book },
+  { id: 'when', label: '¿Cuándo usar?', icon: CheckCircle },
+  { id: 'how', label: '¿Cómo implementar?', icon: CodeIcon },
+  { id: 'alternatives', label: 'Alternativas', icon: AlertCircle }
+];
+---
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+  
+  <!-- Header Section -->
+  <div class="text-center mb-8 sm:mb-12">
+    <div class="inline-flex items-center gap-3 bg-indigo-600/20 rounded-full px-4 sm:px-6 py-3 mb-6 backdrop-blur-sm border border-indigo-500/30">
+      <Database class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
+      <span class="text-white font-semibold text-base sm:text-lg">Content Collections</span>
+      <span class="bg-indigo-500/30 text-indigo-200 px-2 py-1 rounded text-xs sm:text-sm">
         Tu Base de Datos de Contenido
       </span>
     </div>
-    <h2 class="text-4xl font-bold text-white mb-4">
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
       Gestiona tu Contenido como un Pro
     </h2>
-    <p class="text-blue-100 text-lg max-w-3xl mx-auto">
-      Las Content Collections son la forma más poderosa de organizar y validar contenido en Astro.
+    <p class="text-blue-100 text-base sm:text-lg max-w-4xl mx-auto leading-relaxed">
+      las Content Collections son la forma más poderosa de organizar y validar contenido en Astro.
       Con TypeScript automático y validación de esquemas, transforman tu contenido en una base de datos tipada.
     </p>
   </div>
 
-  <!-- Sistema de tabs sin JavaScript usando radio buttons -->
-  <div class="flex flex-wrap justify-center gap-2 mb-8">
+  <!-- Navigation Tabs -->
+  <div class="flex flex-wrap justify-center gap-2 mb-8 sm:mb-12">
     {tabs.map((tab) => (
-      <div class="contents">
-        <input 
-          type="radio" 
-          name="tabs" 
-          id={tab.id} 
-          class="hidden" 
-          checked={tab.id === 'what'}
-        />
-        <label 
-          for={tab.id}
-          class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 bg-white/10 text-blue-100 hover:bg-white/20 cursor-pointer"
-        >
-          <tab.icon class="w-4 h-4" />
-          {tab.label}
-        </label>
-      </div>
+      <button
+        data-tab={tab.id}
+        class="tab-button flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base bg-white/10 text-blue-100 hover:bg-white/20"
+      >
+        <tab.icon class="w-4 h-4" />
+        {tab.label}
+      </button>
     ))}
   </div>
 
-  <div class="tab-content">
-    <!-- Tab: ¿Qué son? -->
-    <div data-tab-content="what">
+  <!-- Content Sections -->
+  <div class="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+    
+    <!-- What Section -->
+    <div id="what-section" class="tab-content p-6 sm:p-8">
       <div class="space-y-8">
-        <div class="grid md:grid-cols-2 gap-8">
+        <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
           <div>
-            <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-              <Zap class="w-6 h-6 text-yellow-400" />
-              ¿Qué son las Content Collections?
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2 flex-wrap">
+              <Zap class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
+              <span>¿Qué son las Content Collections?</span>
             </h3>
-            <div class="text-blue-100 space-y-4">
+            <div class="text-blue-100 space-y-4 text-sm sm:text-base">
               <p>
                 Content collections son la mejor forma de gestionar conjuntos de contenido en cualquier proyecto Astro. Las Collections ayudan a organizar y consultar tus documentos, habilitan Intellisense y la comprobación de tipos en tu editor, y proporcionan seguridad de tipos TypeScript automática para todo tu contenido.
               </p>
@@ -233,137 +205,158 @@ const newsCollection = defineCollection({
             </div>
           </div>
           
-          <div class="bg-gradient-to-br from-purple-900/40 to-blue-900/40 rounded-xl p-6">
+          <div class="bg-gradient-to-br from-purple-900/40 to-blue-900/40 rounded-xl p-4 sm:p-6">
             <h4 class="text-white font-semibold mb-4">Estructura típica:</h4>
-            <pre class="text-sm text-green-300 font-mono">
-{`src/
-  └──content/
-      ├──blog/           ← Colección "blog"
-      │   ├──post-1.md
-      │   └──post-2.md
-      ├──projects/       ← Colección "projects"  
-      │    ├──project-a.md
-      │    └──project-b.md
-      └──config.ts       ← Configuración y schemas`}
-            </pre>
+            <Console title="estructura-proyecto">
+              <ConsoleLine color="text-gray-400">src/</ConsoleLine>
+              <ConsoleLine color="text-gray-400">  └──content/</ConsoleLine>
+              <ConsoleLine color="text-blue-300">      ├──blog/           ← Colección "blog"</ConsoleLine>
+              <ConsoleLine color="text-green-300">      │   ├──post-1.md</ConsoleLine>
+              <ConsoleLine color="text-green-300">      │   └──post-2.md</ConsoleLine>
+              <ConsoleLine color="text-blue-300">      ├──projects/       ← Colección "projects"</ConsoleLine>
+              <ConsoleLine color="text-green-300">      │    ├──project-a.md</ConsoleLine>
+              <ConsoleLine color="text-green-300">      │    └──project-b.md</ConsoleLine>
+              <ConsoleLine color="text-yellow-300">      └──config.ts       ← Configuración y schemas</ConsoleLine>
+            </Console>
           </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="text-center p-6 bg-emerald-900/30 rounded-xl">
-            <CheckCircle class="w-8 h-8 text-emerald-400 mx-auto mb-3" />
-            <h4 class="text-white font-semibold mb-2">Validación Automática</h4>
-            <p class="text-emerald-100 text-sm">Zod valida tus frontmatter automáticamente</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div class="text-center p-4 sm:p-6 bg-emerald-900/30 rounded-xl border border-emerald-500/30">
+            <CheckCircle class="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400 mx-auto mb-3" />
+            <h4 class="text-white font-semibold mb-2 text-sm sm:text-base">Validación Automática</h4>
+            <p class="text-emerald-100 text-xs sm:text-sm">Zod valida tus frontmatter automáticamente</p>
           </div>
-          <div class="text-center p-6 bg-blue-900/30 rounded-xl">
-            <Code class="w-8 h-8 text-blue-400 mx-auto mb-3" />
-            <h4 class="text-white font-semibold mb-2">TypeScript</h4>
-            <p class="text-blue-100 text-sm">Tipos automáticos sin configuración extra</p>
+          <div class="text-center p-4 sm:p-6 bg-blue-900/30 rounded-xl border border-blue-500/30">
+            <CodeIcon class="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-3" />
+            <h4 class="text-white font-semibold mb-2 text-sm sm:text-base">TypeScript</h4>
+            <p class="text-blue-100 text-xs sm:text-sm">Tipos automáticos sin configuración extra</p>
           </div>
-          <div class="text-center p-6 bg-purple-900/30 rounded-xl">
-            <Zap class="w-8 h-8 text-purple-400 mx-auto mb-3" />
-            <h4 class="text-white font-semibold mb-2">Rendimiento SSG</h4>
-            <p class="text-purple-100 text-sm">Todo se procesa en build time</p>
+          <div class="text-center p-4 sm:p-6 bg-purple-900/30 rounded-xl border border-purple-500/30 sm:col-span-2 lg:col-span-1">
+            <Zap class="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-3" />
+            <h4 class="text-white font-semibold mb-2 text-sm sm:text-base">Rendimiento SSG</h4>
+            <p class="text-purple-100 text-xs sm:text-sm">Todo se procesa en build time</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tab: ¿Cuándo usar? -->
-    <div data-tab-content="when">
+    <!-- When Section -->
+    <div id="when-section" class="tab-content hidden p-6 sm:p-8">
       <div class="space-y-8">
-        <h3 class="text-2xl font-bold text-white mb-6">¿Cuándo usar Content Collections?</h3>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-6">¿Cuándo usar Content Collections?</h3>
         
-        <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid md:grid-cols-2 gap-4 sm:gap-6">
           {whenToUse.map((use, index) => (
             <div
-              class={`p-6 rounded-xl border-2 ${
+              class={`p-4 sm:p-6 rounded-xl border-2 ${
                 use.recommended
                   ? 'bg-emerald-900/20 border-emerald-500/50'
                   : 'bg-red-900/20 border-red-500/50'
               }`}
             >
               <div class="flex items-start gap-3 mb-3">
-                <use.icon class="w-5 h-5" />
-                <div>
-                  <h4 class="text-white font-semibold">{use.scenario}</h4>
-                  <span class={`text-xs px-2 py-1 rounded ${
+                <use.icon class="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <div class="min-w-0">
+                  <h4 class="text-white font-semibold text-sm sm:text-base">{use.scenario}</h4>
+                  <span class={`inline-block text-xs px-2 py-1 rounded mt-1 ${
                     use.recommended ? 'bg-emerald-600/30 text-emerald-200' : 'bg-red-600/30 text-red-200'
                   }`}>
                     {use.recommended ? '✅ Recomendado' : '❌ Considera otras opciones'}
                   </span>
                 </div>
               </div>
-              <p class={use.recommended ? 'text-emerald-100' : 'text-red-100'}>
+              <p class={`text-xs sm:text-sm ${use.recommended ? 'text-emerald-100' : 'text-red-100'}`}>
                 {use.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div class="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 rounded-xl p-6">
-          <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+        <div class="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 rounded-xl p-4 sm:p-6 border border-indigo-500/30">
+          <h4 class="text-white font-semibold mb-4 flex items-center gap-2 flex-wrap text-sm sm:text-base">
             <Clock class="w-5 h-5" />
-            Nuevo en Astro 5.10: Live Content Collections
+            <span>Nuevo en Astro 5.10: Live Content Collections</span>
           </h4>
-          <p class="text-indigo-100 mb-4">
+          <p class="text-indigo-100 mb-4 text-xs sm:text-sm">
             Astro 5.10 introduce una nueva función experimental: live content collections. Esta potente incorporación te permite obtener contenido en tiempo de ejecución en lugar de en tiempo de compilación, lo que abre nuevas posibilidades para el contenido dinámico y en tiempo real. 
           </p>
           <div class="bg-indigo-800/30 rounded-lg p-4">
-            <p class="text-indigo-200 text-sm">
+            <p class="text-indigo-200 text-xs sm:text-sm mb-3">
               <strong>Perfecto para:</strong> Contenido que se actualiza con frecuencia desde CMS, API, bases de datos u otras fuentes mediante una API unificada, sin necesidad de reconstruir su sitio cuando los datos cambian.
             </p>
-            <div class="mt-2">
-              <p class="text-indigo-200 text-sm font-bold">Se debe habilitar en el archivo <code class="text-yellow-200">astro.config.mjs</code>:</p>
-              <pre class="bg-gray-800 p-4 rounded-lg mt-2 text-sm">
-                <code class="text-yellow-200">
-{`{
-  experimental: {
-    liveContentCollections: true
-  }
-}`}
-                </code>
-              </pre>
+            <div class="space-y-2">
+              <p class="text-indigo-200 text-xs sm:text-sm font-bold">
+                Se debe habilitar en el archivo <code class="text-yellow-200 bg-gray-800/50 px-1 rounded">astro.config.mjs</code>:
+              </p>
+              <Console title="astro.config.mjs">
+                <Code id="dynamicCodeBlock" code={`export default defineConfig({
+        experimental: {
+          liveContentCollections: true
+      }
+      });`}
+  lang="ts"
+  style="background:transparent;"
+/>
+              </Console>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tab: ¿Cómo implementar? -->
-    <div data-tab-content="how">
+    <!-- How Section -->
+    <div id="how-section" class="tab-content hidden p-6 sm:p-8">
       <div class="space-y-8">
-        <h3 class="text-2xl font-bold text-white mb-6">Implementación Paso a Paso</h3>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-6">Implementación Paso a Paso</h3>
         
-        <div class="space-y-6">
+        <div class="space-y-8">
           <div>
-            <h4 class="text-lg font-semibold text-white mb-3">1. Define tu Schema (config.ts)</h4>
-            <p class="text-blue-100">Cualquier documento que no coincida con el esquema no se agregará.</p>
-            <div class="bg-gray-900/50 rounded-lg p-4 overflow-x-auto">
-              <pre class="text-sm">
-                <code class="text-green-400">{codeExamples.schema}</code>
-              </pre>
-            </div>
+            <h4 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+              <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+              Define tu Schema (config.ts)
+            </h4>
+            <p class="text-blue-100 mb-4 text-sm">Cualquier documento que no coincida con el esquema no se agregará.</p>
+            <Console title="src/content/config.ts">
+              <Code
+                code={codeExamples.schema}
+                lang="typescript"
+                class="text-xs sm:text-sm"
+                style="background:transparent;"
+              />
+            </Console>
           </div>
 
           <div>
-            <h4 class="text-lg font-semibold text-white mb-3">2. Usa tus Collections</h4>
-            <div class="bg-gray-900/50 rounded-lg p-4 overflow-x-auto">
-              <pre class="text-sm">
-                <code class="text-green-400">{codeExamples.usage}</code>
-              </pre>
-            </div>
+            <h4 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+              <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+              Usa tus Collections
+            </h4>
+            <Console title="blog.astro">
+              <Code
+                code={codeExamples.usage}
+                lang="astro"
+                class="text-xs sm:text-sm"
+                style="background:transparent;"
+              />
+            </Console>
           </div>
 
           <div>
-            <h4 class="text-lg font-semibold text-white mb-3">3. Astro 5.0+: Content Loaders</h4>
-            <div class="bg-gray-900/50 rounded-lg p-4 overflow-x-auto">
-              <pre class="text-sm">
-                <code class="text-green-400">{codeExamples.loader}</code>
-              </pre>
-            </div>
-            <p class="text-blue-100 text-sm mt-2">
-              Los loaders te permiten cargar contenido desde cualquier fuente: APIs, bases de datos, 
+            <h4 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+              <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+              Astro 5.0+: Content Loaders
+            </h4>
+            <Console title="config.ts - Con Loaders">
+              <Code
+                code={codeExamples.loader}
+                lang="typescript"
+                class="text-xs sm:text-sm"
+                style="background:transparent;"
+              />
+            </Console>
+            <p class="text-blue-100 text-xs sm:text-sm mt-3 bg-blue-900/20 p-3 rounded-lg border border-blue-500/30">
+              💡 Los loaders te permiten cargar contenido desde cualquier fuente: APIs, bases de datos, 
               archivos en diferentes ubicaciones, etc.
             </p>
           </div>
@@ -371,29 +364,31 @@ const newsCollection = defineCollection({
       </div>
     </div>
 
-    <!-- Tab: Alternativas -->
-    <div data-tab-content="alternatives">
+    <!-- Alternatives Section -->
+    <div id="alternatives-section" class="tab-content hidden p-6 sm:p-8">
       <div class="space-y-8">
-        <h3 class="text-2xl font-bold text-white mb-6">¿Content Collections o qué?</h3>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-6">¿Content Collections o qué?</h3>
         
         <div class="space-y-6">
           {alternatives.map((alt, index) => (
-            <div class="bg-white/5 rounded-xl p-6">
-              <h4 class="text-xl font-semibold text-white mb-2">{alt.name}</h4>
-              <p class="text-white mb-4"><strong>Cuándo usar:</strong> {alt.when}</p>
+            <div class="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10">
+              <h4 class="text-lg sm:text-xl font-semibold text-white mb-2">{alt.name}</h4>
+              <p class="text-white mb-4 text-sm sm:text-base">
+                <strong>Cuándo usar:</strong> {alt.when}
+              </p>
               
               <div class="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h5 class="text-emerald-400 font-medium mb-2">✅ Ventajas:</h5>
-                  <ul class="text-emerald-100 text-sm space-y-1">
+                  <h5 class="text-emerald-400 font-medium mb-2 text-sm sm:text-base">✅ Ventajas:</h5>
+                  <ul class="text-emerald-100 text-xs sm:text-sm space-y-1">
                     {alt.pros.map((pro, i) => (
                       <li>• {pro}</li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h5 class="text-red-400 font-medium mb-2">❌ Desventajas:</h5>
-                  <ul class="text-red-100 text-sm space-y-1">
+                  <h5 class="text-red-400 font-medium mb-2 text-sm sm:text-base">❌ Desventajas:</h5>
+                  <ul class="text-red-100 text-xs sm:text-sm space-y-1">
                     {alt.cons.map((con, i) => (
                       <li>• {con}</li>
                     ))}
@@ -404,14 +399,14 @@ const newsCollection = defineCollection({
           ))}
         </div>
 
-        <div class="bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-xl p-6 border border-yellow-500/30">
-          <h4 class="text-yellow-200 font-semibold mb-3 flex items-center gap-2">
+        <div class="bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-xl p-4 sm:p-6 border border-yellow-500/30">
+          <h4 class="text-yellow-200 font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
             <AlertCircle class="w-5 h-5" />
             Decisión Rápida
           </h4>
-          <div class="text-yellow-100 space-y-2 text-sm">
+          <div class="text-yellow-100 space-y-2 text-xs sm:text-sm">
             <p>¿Tienes ≥5 documentos homogéneos? → <strong>Content Collections</strong></p>
-            <p>¿Pocas páginas que son únicas (about, contact, home)? → <strong>Páginas estáticas <code>.astro</code></strong></p>
+            <p>¿Pocas páginas que son únicas (about, contact, home)? → <strong>Páginas estáticas <code class="bg-gray-800/50 px-1 rounded">.astro</code></strong></p>
             <p>¿Datos cambian cada minuto? → <strong>Live Collections o SSR</strong></p>
           </div>
         </div>
@@ -419,3 +414,77 @@ const newsCollection = defineCollection({
     </div>
   </div>
 </div>
+
+<script is:inline>
+  function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    function showTab(targetTab) {
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+      });
+
+      tabButtons.forEach(button => {
+        button.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
+        button.classList.add('bg-white/10', 'text-blue-100');
+      });
+
+      const targetContent = document.getElementById(`${targetTab}-section`);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      const targetButton = document.querySelector(`[data-tab="${targetTab}"]`);
+      if (targetButton) {
+        targetButton.classList.remove('bg-white/10', 'text-blue-100');
+        targetButton.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
+      }
+    }
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        showTab(tabId);
+      });
+    });
+
+    showTab('what');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabs);
+  } else {
+    initTabs();
+  }
+</script>
+
+<style>
+  .tab-content {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  @media (max-width: 640px) {
+    pre {
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+  }
+</style>
