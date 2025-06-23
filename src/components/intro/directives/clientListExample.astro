@@ -1,0 +1,229 @@
+---
+import Console from "@/components/console.astro";
+import ConsoleLine from "@/components/consoleLine.astro";
+import { Code } from "astro:components";
+
+// Estado inicial para el ejemplo
+const initialState = {
+  isActive: true,
+  hasError: false,
+  size: "medium",
+};
+---
+
+<section
+  class="flex-col items-center justify-center w-full mt-16"
+>
+    <div class="text-center w-full">
+      <h1 class="text-3xl font-bold text-white">Ejemplo de directiva</h1>
+      <p class="text-indigo-300 mt-2">Ejemplo Interactivo de class:list</p>
+      <p class="text-gray-400 text-sm">
+        Cambia los controles para ver cómo class:list genera las clases CSS
+        dinámicamente
+      </p>
+    </div>
+    <div class="flex items-center justify-center mt-8">
+      <div class="space-y-4">
+        <div class="flex flex-wrap gap-4 items-center">
+          <label
+            class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10 hover:border-indigo-400 transition"
+          >
+            <input
+              type="checkbox"
+              id="isActive"
+              checked={initialState.isActive}
+              class="accent-indigo-500 bg-transparent border-gray-500 rounded focus:ring-2 focus:ring-indigo-400"
+            />
+            <span class="text-sm text-gray-200">Activo</span>
+          </label>
+
+          <label
+            class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10 hover:border-red-400 transition"
+          >
+            <input
+              type="checkbox"
+              id="hasError"
+              checked={initialState.hasError}
+              class="accent-red-500 bg-transparent border-gray-500 rounded focus:ring-2 focus:ring-red-400"
+            />
+            <span class="text-sm text-gray-200">Error</span>
+          </label>
+
+          <div
+            class="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10 hover:border-indigo-400 transition"
+          >
+            <label class="text-sm font-medium text-gray-200 mb-0" for="size"
+              >Tamaño</label
+            >
+            <select
+              id="size"
+              value={initialState.size}
+              class="bg-transparent border-none text-sm text-white focus:ring-0 focus:outline-none"
+            >
+              <option value="small" class="bg-gray-800 text-white"
+                >Pequeño</option
+              >
+              <option value="medium" class="bg-gray-800 text-white"
+                >Mediano</option
+              >
+              <option value="large" class="bg-gray-800 text-white"
+                >Grande</option
+              >
+            </select>
+          </div>
+          <button
+            id="dynamicButton"
+            class:list={[
+              "btn",
+              "transition-all",
+              "duration-200",
+              "rounded-md",
+              initialState.isActive && !initialState.hasError
+                ? "bg-blue-500 text-white"
+                : "",
+              initialState.hasError ? "bg-red-500 text-white" : "",
+              !initialState.isActive && !initialState.hasError
+                ? "bg-gray-300 text-gray-600"
+                : "",
+              initialState.size === "small" ? "px-2 py-1 text-sm" : "",
+              initialState.size === "medium" ? "px-4 py-2" : "",
+              initialState.size === "large" ? "px-6 py-3 text-lg" : "",
+            ]}
+          >
+            Botón Dinámico
+          </button>
+        </div>
+        <div class="pt-4">
+            <button
+            id="showCodeButton"
+            class="w-full px-3 py-2 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition flex items-center justify-center gap-2"
+            type="button"
+            aria-label="Ver código"
+            >
+            <!-- Ícono de ojo SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0c0 3.866 3.582 7 8 7s8-3.134 8-7-3.582-7-8-7-8 3.134-8 7z" />
+            </svg>
+            <span>Ver código</span>
+            </button>
+        </div>
+      </div>
+
+      <div class="rounded-lg overflow-hidden">
+        <div id="codeContainer" style="display:none;">
+          <Console
+            title="Código generado">
+          <ConsoleLine> ---</ConsoleLine>
+          <ConsoleLine id="active_line"> const isActive = {initialState.isActive};</ConsoleLine>
+          <ConsoleLine id="error_line"> const hasError = {initialState.hasError};</ConsoleLine>
+          <ConsoleLine id="size_line"> const size = "{initialState.size}";</ConsoleLine>
+          <ConsoleLine> ---</ConsoleLine>
+          </pre>
+          <Code
+            id="dynamicCodeBlock"
+            code={`
+  <button class:list={[
+    'btn',
+    'transition-all',
+    'duration-200',
+    'rounded-md',
+    {
+    'bg-blue-500 text-white': isActive && !hasError,
+    'bg-red-500 text-white': hasError,
+    'bg-gray-300 text-gray-600': !isActive && !hasError,
+    'px-2 py-1 text-sm': size === 'small',
+    'px-4 py-2': size === 'medium',
+    'px-6 py-3 text-lg': size === 'large'
+    }
+  ]}>
+    Botón Dinámico
+  </button>`}
+            lang="ts"
+            style="background:transparent;"
+          />
+          </Console>
+        </div>
+
+      </div>
+    </div>
+</section>
+
+<script is:inline>
+  let isActive = true;
+  let hasError = false;
+  let size = "medium";
+
+  // Referencias a elementos
+  const isActiveCheckbox = document.getElementById("isActive");
+  const hasErrorCheckbox = document.getElementById("hasError");
+  const sizeSelect = document.getElementById("size");
+  const dynamicButton = document.getElementById("dynamicButton");
+  const copyButton = document.getElementById("copyButton");
+  const showCodeButton = document.getElementById("showCodeButton");
+  const codeContainer = document.getElementById("codeContainer");
+  const activeLine = document.getElementById("active_line");
+    const errorLine = document.getElementById("error_line");
+    const sizeLine = document.getElementById("size_line");
+  
+  // Mostrar/ocultar código con icono dinámico
+  showCodeButton.addEventListener("click", () => {
+    const eyeIcon = showCodeButton.querySelector("svg");
+    const labelSpan = showCodeButton.querySelector("span");
+    if (codeContainer.style.display === "none") {
+      codeContainer.style.display = "block";
+      // Cambiar a ícono de "ojo tachado"
+      eyeIcon.innerHTML = `
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.418 0-8-3.134-8-7 0-1.306.417-2.527 1.175-3.575M6.23 6.23A7.963 7.963 0 0112 5c4.418 0 8 3.134 8 7 0 1.306-.417 2.527-1.175 3.575M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9.53 9.53l15-15" />
+      `;
+      labelSpan.textContent = "Ocultar código";
+    } else {
+      codeContainer.style.display = "none";
+      // Cambiar a ícono de "ojo abierto"
+      eyeIcon.innerHTML = `
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0c0 3.866 3.582 7 8 7s8-3.134 8-7-3.582-7-8-7-8 3.134-8 7z" />
+      `;
+      labelSpan.textContent = "Ver código";
+    }
+  });
+
+  function updateButton() {
+    dynamicButton.className = "btn transition-all duration-200 rounded-md";
+
+    if (isActive && !hasError) {
+      dynamicButton.classList.add("bg-blue-500", "text-white");
+    } else if (hasError) {
+      dynamicButton.classList.add("bg-red-500", "text-white");
+    } else if (!isActive && !hasError) {
+      dynamicButton.classList.add("bg-gray-300", "text-gray-600");
+    }
+
+    if (size === "small") {
+      dynamicButton.classList.add("px-2", "py-1", "text-sm");
+    } else if (size === "medium") {
+      dynamicButton.classList.add("px-4", "py-2");
+    } else if (size === "large") {
+      dynamicButton.classList.add("px-6", "py-3", "text-lg");
+    }
+  }
+
+
+  isActiveCheckbox.addEventListener("change", (e) => {
+    isActive = e.target.checked;
+    activeLine.textContent = ` const isActive = ${isActive};`;
+    updateButton();
+  });
+
+  hasErrorCheckbox.addEventListener("change", (e) => {
+    hasError = e.target.checked;
+    errorLine.textContent = ` const hasError = ${hasError};`;
+    updateButton();
+  });
+
+  sizeSelect.addEventListener("change", (e) => {
+    size = e.target.value;
+    sizeLine.textContent = ` const size = "${size}";`;
+    updateButton();
+  });
+
+  updateButton();
+</script>

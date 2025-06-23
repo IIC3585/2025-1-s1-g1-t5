@@ -3,7 +3,6 @@ import rawMovies from "@/content/data/movies.json";
 export async function getMovies() {
   return rawMovies.map((movie) => {
     const title = movie["Title"].toString() as string || "untitled" as string;
-    console.log(`Processing movie: ${title}`);
 
     return {
       slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),

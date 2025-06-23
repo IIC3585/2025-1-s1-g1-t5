@@ -1,0 +1,101 @@
+---
+---
+<section class="max-w-7xl bg-blue-900/50 rounded-3xl p-6 border border-slate-700 shadow-2xl">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-min">
+      <div
+        class="md:col-span-12 bg-slate-800/80 rounded-xl p-2 border border-slate-700 flex items-center justify-between"
+      >
+        <div class="text-slate-300 font-medium">Logo</div>
+        <div class="flex space-x-3">
+          <span class="text-slate-400">Inicio</span>
+          <span class="text-slate-400">Productos</span>
+          <span class="text-slate-400">Contacto</span>
+        </div>
+      </div>
+      <div
+        class="md:col-span-12 bg-slate-800/60 rounded-xl p-2 border border-slate-700 text-center"
+      >
+        <h2 class="text-2xl text-white mb-2">Bienvenido a nuestra tienda</h2>
+        <p class="text-slate-400">Contenido estático de alto rendimiento</p>
+      </div>
+      <div
+        class="md:col-span-3 bg-slate-800/70 rounded-xl p-2 border border-slate-700"
+      >
+        <h4 class="text-slate-300 font-medium mb-2">Categorías</h4>
+        <ul class="space-y-2 text-slate-400">
+          <li>Electrónica</li>
+          <li>Hogar</li>
+          <li>Deportes</li>
+        </ul>
+      </div>
+      <div class="md:col-span-6 space-y-4">
+        <div class="bg-slate-800/50 rounded-xl p-2 border border-slate-700">
+          <h4 class="text-slate-300 font-medium mb-2">Listado de productos</h4>
+          <div class="grid grid-cols-2 gap-3">
+            {
+              [1, 2, 3, 4].map((item) => (
+                <div class="bg-slate-700/40 rounded-lg p-2 text-center text-slate-400">
+                  Producto {item}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <div
+          class="relative bg-blue-900/30 rounded-xl p-2 border-2 border-blue-400 overflow-hidden"
+        >
+          <div
+            class="absolute top-2 right-2 w-3 h-3 bg-green-400 rounded-full animate-ping"
+          >
+          </div>
+          <h4 class="text-blue-200 font-medium mb-2 flex items-center">
+            <span class="mr-2">🏝️</span> Carrito de compras (React)
+          </h4>
+          <div
+            class="bg-blue-800/40 rounded-lg p-2 text-blue-100 animate-pulse text-center"
+          >
+            3 items | Total: $299
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-3 space-y-4">
+        <div
+          class="relative bg-green-900/30 rounded-xl p-2 border-2 border-green-400 overflow-hidden"
+        >
+          <div
+            class="absolute top-2 right-2 w-3 h-3 bg-green-400 rounded-full animate-ping"
+          >
+          </div>
+          <h4 class="text-green-200 font-medium mb-3 flex items-center">
+            <span class="mr-2">🏝️</span> Buscador (Vue)
+          </h4>
+          <div
+            class="bg-green-800/40 rounded-lg p-3 text-green-100 animate-pulse text-center"
+          >
+            🔍 Buscar productos...
+          </div>
+        </div>
+        <div
+          class="relative bg-orange-900/30 rounded-xl p-4 border-2 border-orange-400 overflow-hidden"
+        >
+          <div
+            class="absolute top-2 right-2 w-3 h-3 bg-green-400 rounded-full animate-ping"
+          >
+          </div>
+          <h4 class="text-orange-200 font-medium mb-3 flex items-center">
+            <span class="mr-2">🏝️</span> Recomendaciones (Svelte)
+          </h4>
+          <div
+            class="bg-orange-800/40 rounded-lg p-3 text-orange-100 animate-pulse text-center"
+          >
+            Productos sugeridos
+          </div>
+        </div>
+      </div>
+      <div
+        class="md:col-span-12 bg-slate-800/80 rounded-xl p-4 border border-slate-700 text-center text-slate-400"
+      >
+        © 2023 Mi Tienda Astro - Todos los derechos reservados
+      </div>
+    </div>
+</section>

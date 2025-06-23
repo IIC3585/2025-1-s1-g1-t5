@@ -1,0 +1,18 @@
+---
+export interface Props {
+  lineNumber?: number;
+  color?: string;
+  id?:string;
+}
+
+const { lineNumber, color = "text-slate-400" } = Astro.props;
+---
+
+<div class="flex" id={Astro.props.id || ''}>
+  {lineNumber && (
+    <span class="text-slate-500 w-8 select-none">{lineNumber}</span>
+  )}
+  <span class={`${color}`}>
+    <slot />
+  </span>
+</div>
