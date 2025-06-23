@@ -7,16 +7,16 @@ import { Code } from 'astro:components';
 
 <section class="space-y-8">
   <div class="prose prose-invert max-w-none">
-    <h2 class="text-5xl font-bold text-white mb-4">Comunicación entre Islas en Astro</h2>
-    <p class="text-xl text-blue-200 mb-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Comunicación entre Islas en Astro</h2>
+    <p class="text-base sm:text-xl text-blue-200 mb-6">
       Las islas en Astro son componentes interactivos que se hidratan de forma independiente. 
       Para compartir estado entre ellas, debes usar estos patrones específicos:
     </p>
   </div>
 
-  <div class="grid lg:grid-cols-2 gap-6">
+  <div class="grid lg:grid-cols-2 gap-6 w-fit">
     {connectionTypes.map((connection) => (
-      <div class="rounded-xl p-6 border border-white/10 hover:border-blue-400  bg-white/5 backdrop-blur-lg transition-colors">
+      <div class="rounded-xl p-4 sm:p-6 border border-white/10 hover:border-blue-400  bg-white/5 backdrop-blur-lg transition-colors">
         <div class="flex items-center gap-3 mb-4">
           <div class={`w-3 h-3 rounded-full ${
             connection.type === 'Event Bus' ? 'bg-purple-500' : 

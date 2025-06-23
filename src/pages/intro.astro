@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/intro/heroSection.astro";
 import ConnectionIslandsSections from "@/components/intro/connectionIslandsSections.astro";
 import DirectiveSection from "@/components/intro/directiveSection.astro";
-import ContentCollectionsGuide from "@/components/intro/contentCollectionsGuide.astro";
+import ContentCollectionsGuide from "@/components/intro/contentCollectionsSection.astro";
 ---
 
 <Layout title="Presentación: Astro">
@@ -12,7 +12,7 @@ import ContentCollectionsGuide from "@/components/intro/contentCollectionsGuide.
     <DirectiveSection />
     <section class="py-20">
       <div class="container mx-auto px-6">
-        <ContentCollectionsGuide client:load />
+        <ContentCollectionsGuide/>
       </div>
     </section>
 </Layout>
