@@ -27,7 +27,6 @@ const cats = defineCollection({
 const movies = defineCollection({
   loader: async () => {
     const data = await getMovies();
-    // Ensure each movie has an 'id' property (use slug as id)
     return data.map((movie: any) => ({
       ...movie,
       id: movie.slug,
@@ -50,5 +49,3 @@ const movies = defineCollection({
 
 
 export const collections = { cats , movies };
-
-

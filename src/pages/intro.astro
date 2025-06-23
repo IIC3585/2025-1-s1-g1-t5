@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import TestimonialCard from '@/components/exampleIslands/testimonialCard';
 import Counter from '@/components/exampleIslands/counter.svelte';
 import Accordion from '@/components/exampleIslands/accordeon.vue';
+import ContentCollectionsGuide from '@/components/contentCollectionsGuide';
 
 
 const testimonials = [
@@ -296,6 +297,13 @@ import MiComponenteVue from './MiComponente.vue';
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <ContentCollectionsGuide client:load />
+      </div>
+
     </section>
 
     <section class="py-20">

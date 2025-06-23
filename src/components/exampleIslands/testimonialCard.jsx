@@ -1,6 +1,3 @@
-// TestimonialCard.jsx
-import React from 'react';
-
 const TestimonialCard = ({ name, role, quote, avatar }) => {
   return (
     <div className="max-w-md p-6 mb-8 glass-effect glass-purple"

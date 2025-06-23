@@ -12,16 +12,13 @@ export const prerender = true;
   <div class="container mx-auto px-4">
     <div class="glass-effect glass-purple p-8 rounded-2xl mb-12 text-center max-w-4xl mx-auto">
       <h1 class="text-5xl font-bold text-white mb-4">
-        📸 Galería Completa
+        Galería Completa
       </h1>
       <p class="text-xl text-gray-200 mb-2">
         {cats.length} páginas generadas estáticamente
       </p>
-      <p class="text-gray-300">
-        Cada imagen tiene su propia página optimizada para SEO
-      </p>
       
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
         <div class="glass-effect glass-dark p-3 rounded-lg">
           <div class="text-2xl font-bold text-green-300">{cats.length}</div>
           <div class="text-sm text-gray-400">Páginas SSG</div>
@@ -33,10 +30,6 @@ export const prerender = true;
         <div class="glass-effect glass-dark p-3 rounded-lg">
           <div class="text-2xl font-bold text-purple-300">{cats.filter(cat => !cat.data.url.includes('.gif')).length}</div>
           <div class="text-sm text-gray-400">Imágenes</div>
-        </div>
-        <div class="glass-effect glass-dark p-3 rounded-lg">
-          <div class="text-2xl font-bold text-yellow-300">100%</div>
-          <div class="text-sm text-gray-400">Estático</div>
         </div>
       </div>
     </div>
