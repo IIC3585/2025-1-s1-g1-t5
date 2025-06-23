@@ -154,7 +154,7 @@ const relatedCats = allCats
         <div class="mb-12">
             <div class="glass-effect glass-purple p-6 rounded-2xl">
                 <h2 class="text-2xl font-bold text-white mb-4 text-center">
-                💖 ¿Qué te parece este gato?
+                ¿Qué te parece este gato?
                 </h2>
                 <CatReactions catId={cat.id} client:load />
             </div>
@@ -164,7 +164,7 @@ const relatedCats = allCats
         <div class="mb-12">
             <div class="glass-effect glass-blue p-6 rounded-2xl">
                 <h2 class="text-2xl font-bold text-white mb-6 text-center">
-                    🔗 Gatos relacionados
+                    Gatos relacionados
                 </h2>
                 <RelatedCats cats={relatedCats} client:visible />
             </div>
@@ -183,12 +183,6 @@ const relatedCats = allCats
             Anterior
             </a>
         )}
-        
-        <div class="text-center flex-1 mx-4 hidden sm:flex justify-center">
-            <span class="glass-effect glass-dark px-4 py-2 rounded-lg text-gray-300 text-sm">
-            Página generada estáticamente con Astro SSG
-            </span>
-        </div>
 
         {allCats.findIndex(c => c.id === cat.id) < allCats.length - 1 && (
             <a 

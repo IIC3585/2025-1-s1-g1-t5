@@ -24,7 +24,7 @@
   .label {
     margin-top: 0.25rem;
     font-size: 0.9rem;
-    color: #444;
+    color: #fff;
   }
 </style>
 

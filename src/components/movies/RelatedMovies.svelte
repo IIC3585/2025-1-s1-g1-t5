@@ -125,7 +125,9 @@
 <div class="relative overflow-hidden" bind:this={containerElement}>
   <div class="flex justify-between items-center mb-4">
     <button class="glass-effect glass-dark p-2 rounded-full" on:click={prevSlide} disabled={isLoading}>
-      ◀
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
     </button>
     <div class="flex space-x-2">
       {#each Array(maxIndex + 1) as _, index}
@@ -133,7 +135,9 @@
       {/each}
     </div>
     <button class="glass-effect glass-dark p-2 rounded-full" on:click={nextSlide} disabled={isLoading}>
-      ▶
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
     </button>
   </div>
 
