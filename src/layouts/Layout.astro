@@ -40,7 +40,7 @@ const { title, description = "Astro Demo" } = Astro.props;
     </main>
     { 
       // current is not de index page
-      Astro.url.pathname !== '/'
+      Astro.url.pathname !== '/' && Astro.url.pathname !== '/intro'
      && <HighlightToggle />
     }
   </body>
