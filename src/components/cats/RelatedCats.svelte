@@ -304,12 +304,6 @@
       </div>
       <span class="text-sm text-gray-300">Auto-deslizar</span>
     </label>
-    
-    {#if autoSlide}
-      <div class="text-xs text-gray-500">
-        Cambia cada 4 segundos
-      </div>
-    {/if}
   </div>
 
 
