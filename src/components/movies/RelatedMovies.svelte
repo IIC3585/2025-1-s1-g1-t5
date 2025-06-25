@@ -124,17 +124,17 @@
 
 <div class="relative overflow-hidden" bind:this={containerElement}>
   <div class="flex justify-between items-center mb-4">
-    <button class="glass-effect glass-dark p-2 rounded-full" on:click={prevSlide} disabled={isLoading}>
+    <button class="bg-gray-300 border border-gray-400 hover:bg-gray-400 p-2 rounded-full" on:click={prevSlide} disabled={isLoading}>
       <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
     </button>
     <div class="flex space-x-2">
       {#each Array(maxIndex + 1) as _, index}
-        <button class="w-2 h-2 rounded-full {currentIndex === index ? 'bg-purple-400 w-6' : 'bg-gray-600'}" on:click={() => goToSlide(index)}></button>
+        <button class="w-2 h-2 rounded-full {currentIndex === index ? 'bg-sky-600 w-6' : 'bg-gray-600'}" on:click={() => goToSlide(index)}></button>
       {/each}
     </div>
-    <button class="glass-effect glass-dark p-2 rounded-full" on:click={nextSlide} disabled={isLoading}>
+    <button class="bg-gray-300 border border-gray-400 hover:bg-gray-400 p-2 rounded-full" on:click={nextSlide} disabled={isLoading}>
       <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
       </svg>
@@ -146,13 +146,13 @@
       {#each movies as movie, index (movie.data.slug)}
         <div class="flex-shrink-0 w-full {isMobile ? '' : 'md:w-1/3'} px-2">
           <div class="group cursor-pointer" on:click={() => handleMovieClick(movie)}>
-            <div class="glass-effect glass-dark hover:glass-blue rounded-xl overflow-hidden">
+            <div class="bg-gray-200 border border-gray-300 hover:bg-gray-100 transition-all duration-200 rounded-xl overflow-hidden">
               <div class="aspect-square overflow-hidden">
                 <img src={movie.data.img_url} alt={movie.data.title} class="w-full h-full object-cover" />
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-white truncate">{movie.data.title}</h3>
-                <p class="text-sm text-gray-400">{movie.data.major_genre}</p>
+                <h3 class="font-semibold text-gray-800 truncate">{movie.data.title}</h3>
+                <p class="text-sm text-gray-600">{movie.data.major_genre}</p>
               </div>
             </div>
           </div>

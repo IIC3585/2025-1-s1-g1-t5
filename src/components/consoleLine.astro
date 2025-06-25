@@ -5,12 +5,12 @@ export interface Props {
   id?:string;
 }
 
-const { lineNumber, color = "text-slate-400" } = Astro.props;
+const { lineNumber, color = "text-slate-800" } = Astro.props;
 ---
 
 <div class="flex min-w-0" id={Astro.props.id || ''}>
   {lineNumber && (
-    <span class="text-slate-500 w-6 sm:w-8 select-none flex-shrink-0 text-right pr-2">{lineNumber}</span>
+    <span class="text-slate-800 w-6 sm:w-8 select-none flex-shrink-0 text-right pr-2">{lineNumber}</span>
   )}
   <span class={`${color} break-all sm:break-normal flex-1 min-w-0`}>
     <slot />

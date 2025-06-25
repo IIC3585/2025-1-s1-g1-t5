@@ -1,26 +1,26 @@
 <div
-  class="rounded-xl p-6 border border-white/10 hover:border-blue-400 bg-white/5 backdrop-blur-lg transition-colors"
+  class="rounded-xl p-6 border border-gray-300 hover:border-blue-400 bg-gray-100 backdrop-blur-lg transition-colors"
 >
-  <h2 class="text-3xl font-bold text-white mb-6 text-center">
+  <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
     Directivas de Astro
   </h2>
 
   <!-- Tabla de Directivas Comunes -->
   <div class="mb-10 overflow-x-auto">
-    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
+    <h3 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-4">
       Directivas Comunes
     </h3>
     <table class="w-full border-collapse">
       <thead>
-        <tr class="bg-white/5">
-          <th class="p-3 text-left border-b border-white/10">Directiva</th>
-          <th class="p-3 text-left border-b border-white/10">Propósito</th>
-          <th class="p-3 text-left border-b border-white/10">Detalles</th>
+        <tr class="bg-gray-200">
+          <th class="p-3 text-left border-b border-gray-300">Directiva</th>
+          <th class="p-3 text-left border-b border-gray-300">Propósito</th>
+          <th class="p-3 text-left border-b border-gray-300">Detalles</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>class:list</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>class:list</code></td>
           <td class="p-3"
             >Convierte un array de clases en un string de clases CSS</td
           >
@@ -33,15 +33,15 @@
             </ul>
           </td>
         </tr>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>set:html</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>set:html</code></td>
           <td class="p-3">Inyecta un string de HTML</td>
-          <td class="p-3 text-red-400"
+          <td class="p-3 text-red-700"
             >⚠️ Advertencia: Astro no verifica el valor (riesgo XSS)</td
           >
         </tr>
-        <tr class="hover:bg-white/5">
-          <td class="p-3 font-mono text-blue-300"><code>set:text</code></td>
+        <tr class="hover:bg-gray-200">
+          <td class="p-3 font-mono text-sky-700"><code>set:text</code></td>
           <td class="p-3">Inyecta texto de forma segura</td>
           <td class="p-3">Equivalente a <code>innerText</code></td>
         </tr>
@@ -51,63 +51,63 @@
 
   <!-- Tabla de Directivas del Cliente -->
   <div class="mb-10 overflow-x-auto">
-    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
+    <h3 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-4">
       Directivas del Cliente
     </h3>
     <table class="w-full border-collapse">
       <thead>
-        <tr class="bg-white/5">
-          <th class="p-3 text-left border-b border-white/10">Directiva</th>
-          <th class="p-3 text-left border-b border-white/10">Propósito</th>
-          <th class="p-3 text-left border-b border-white/10">Prioridad</th>
-          <th class="p-3 text-left border-b border-white/10">Uso típico</th>
+        <tr class="bg-gray-200">
+          <th class="p-3 text-left border-b border-gray-300">Directiva</th>
+          <th class="p-3 text-left border-b border-gray-300">Propósito</th>
+          <th class="p-3 text-left border-b border-gray-300">Prioridad</th>
+          <th class="p-3 text-left border-b border-gray-300">Uso típico</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>client:load</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>client:load</code></td>
           <td class="p-3">Hidrata inmediatamente al cargar</td>
           <td class="p-3"
-            ><span class="px-2 py-1 bg-green-500/20 text-green-400 rounded"
+            ><span class="px-2 py-1 bg-green-200 text-green-700 border-green-400 border rounded"
               >Alta</span
             ></td
           >
           <td class="p-3">UI visible e interactiva desde el inicio</td>
         </tr>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>client:idle</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>client:idle</code></td>
           <td class="p-3">Hidrata cuando el navegador está inactivo</td>
           <td class="p-3"
-            ><span class="px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded"
+            ><span class="px-2 py-1 bg-yellow-200 text-yellow-700 border-yellow-400 border rounded"
               >Media</span
             ></td
           >
           <td class="p-3">UI de menor prioridad</td>
         </tr>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"
             ><code>client:visible</code></td
           >
           <td class="p-3">Hidrata al entrar en el viewport</td>
           <td class="p-3"
-            ><span class="px-2 py-1 bg-red-500/20 text-red-400 rounded"
+            ><span class="px-2 py-1 bg-red-200 text-red-700 border-red-400 border rounded"
               >Baja</span
             ></td
           >
           <td class="p-3">Elementos fuera del viewport inicial</td>
         </tr>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>client:media</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>client:media</code></td>
           <td class="p-3">Hidrata si se cumple media query</td>
           <td class="p-3"
-            ><span class="px-2 py-1 bg-red-500/20 text-red-400 rounded"
+            ><span class="px-2 py-1 bg-red-200 text-red-700 border-red-400 border rounded"
               >Baja</span
             ></td
           >
           <td class="p-3">Elementos dependientes del tamaño de pantalla</td>
         </tr>
-        <tr class="hover:bg-white/5">
-          <td class="p-3 font-mono text-blue-300"><code>client:only</code></td>
+        <tr class="hover:bg-gray-200">
+          <td class="p-3 font-mono text-sky-700"><code>client:only</code></td>
           <td class="p-3">Renderiza solo en el cliente</td>
           <td class="p-3">-</td>
           <td class="p-3">Para frameworks específicos (React, Vue, etc.)</td>
@@ -118,40 +118,40 @@
 
   <!-- Tabla de Otras Directivas -->
   <div class="mb-10 overflow-x-auto">
-    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">Otras Directivas</h3>
+    <h3 class="text-xl sm:text-2xl font-semibold text-sky-700 mb-4">Otras Directivas</h3>
     <table class="w-full border-collapse">
       <thead>
-        <tr class="bg-white/5">
-          <th class="p-3 text-left border-b border-white/10">Directiva</th>
-          <th class="p-3 text-left border-b border-white/10">Propósito</th>
-          <th class="p-3 text-left border-b border-white/10">Detalles</th>
+        <tr class="bg-gray-200">
+          <th class="p-3 text-left border-b border-gray-300">Directiva</th>
+          <th class="p-3 text-left border-b border-gray-300">Propósito</th>
+          <th class="p-3 text-left border-b border-gray-300">Detalles</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>server:defer</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>server:defer</code></td>
           <td class="p-3">Convierte en isla de servidor</td>
           <td class="p-3">Renderizado bajo demanda</td>
         </tr>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>is:global</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>is:global</code></td>
           <td class="p-3">Aplica estilos CSS globalmente</td>
           <td class="p-3">No solo al componente</td>
         </tr>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>is:inline</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>is:inline</code></td>
           <td class="p-3">Evita procesamiento de Astro</td>
           <td class="p-3">No se empaquetan, no se deduplican</td>
         </tr>
-        <tr class="hover:bg-white/5 border-b border-white/10">
-          <td class="p-3 font-mono text-blue-300"><code>define:vars</code></td>
+        <tr class="hover:bg-gray-200 border-b border-gray-300">
+          <td class="p-3 font-mono text-sky-700"><code>define:vars</code></td>
           <td class="p-3">Pasa variables del servidor</td>
           <td class="p-3"
             >Solo JSON-serializables, implica <code>is:inline</code></td
           >
         </tr>
-        <tr class="hover:bg-white/5">
-          <td class="p-3 font-mono text-blue-300"><code>is:raw</code></td>
+        <tr class="hover:bg-gray-200">
+          <td class="p-3 font-mono text-sky-700"><code>is:raw</code></td>
           <td class="p-3">Trata hijos como texto plano</td>
           <td class="p-3">Ignora sintaxis de Astro</td>
         </tr>

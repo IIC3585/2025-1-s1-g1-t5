@@ -10,7 +10,7 @@ const { movies } = Astro.props;
   {movies.map((movie) => (
     <div class="group cursor-pointer">
       <a href={`/movies/${movie.data.slug}`} class="block">
-        <div class="glass-effect glass-dark hover:glass-purple transform group-hover:scale-105 transition-all duration-300 group-hover:glow-effect rounded-xl overflow-hidden">
+        <div class="bg-gray-100 border border-gray-300 transform group-hover:scale-105 transition-all duration-300 group-hover:glow-effect rounded-xl overflow-hidden">
           <div class="aspect-[2/3] overflow-hidden relative bg-black">
             <img 
               src={movie.data.img_url} 
@@ -20,10 +20,10 @@ const { movies } = Astro.props;
             />
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-white group-hover:text-purple-200 transition-colors truncate">
+            <h3 class="font-semibold text-gray-800 group-hover:text-sky-700 transition-colors truncate">
               {movie.data.title}
             </h3>
-            <p class="text-sm text-gray-400">
+            <p class="text-sm text-gray-600">
               {movie.data.major_genre}
             </p>
           </div>

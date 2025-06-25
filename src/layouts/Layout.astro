@@ -20,24 +20,24 @@ const { title, description = "Astro Demo" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 min-h-screen flex flex-col text-white debug-islands">
+  <body class="bg-stone-50 min-h-screen flex flex-col text-black debug-islands">
     <Navbar client:load />
-    <main  class="flex-grow py-2 px-4 sm:px-8 flex flex-col items-center justify-center">
-      <div class="absolute inset-0 overflow-hidden">
-      {[...Array(25)].map((_) => (
-        <div 
-          class="absolute rounded-full bg-indigo-500 opacity-20 animate-bounce "
-          style={`
-            width: ${Math.random() * 10 + 5}px;
-            height: ${Math.random() * 10 + 5}px;
-            top: ${Math.random() * 100}%;
-            left: ${Math.random() * 100}%;
-          `}
-        />
-      ))}
-    </div>
+    <main  class="flex-grow py-2 px-4 sm:px-8 flex flex-col items-center justify-center z-10">
       <slot />
     </main>
+    <div class="absolute inset-0 overflow-hidden -z-10">
+    {[...Array(25)].map((_) => (
+      <div 
+        class="absolute rounded-full bg-sky-500 opacity-20 animate-bounce"
+        style={`
+          width: ${Math.random() * 10 + 5}px;
+          height: ${Math.random() * 10 + 5}px;
+          top: ${Math.random() * 100}%;
+          left: ${Math.random() * 100}%;
+        `}
+      />
+    ))}
+    </div>
     { 
       // current is not de index page
       Astro.url.pathname !== '/' && Astro.url.pathname !== '/intro'

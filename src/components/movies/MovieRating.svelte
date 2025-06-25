@@ -24,7 +24,6 @@
   .label {
     margin-top: 0.25rem;
     font-size: 0.9rem;
-    color: #fff;
   }
 </style>
 
@@ -39,7 +38,7 @@
     ☆
   {/each}
 </div>
-<div class="label">
+<div class="label text-gray-600">
   IMDb Rating: {rating} / 10<br />
   ({formatVotes(votes)} votos)
 </div>

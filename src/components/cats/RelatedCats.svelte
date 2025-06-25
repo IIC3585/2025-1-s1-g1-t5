@@ -170,7 +170,7 @@
   {#if cats.length > itemsPerView}
     <div class="flex justify-between items-center mb-4">
       <button
-        class="glass-effect glass-dark p-2 rounded-full hover:glass-purple transition-all transform hover:scale-110 disabled:opacity-50"
+        class="bg-gray-300 border border-gray-400 hover:bg-gray-400 p-2 rounded-full transition-all transform disabled:opacity-50"
         on:click={prevSlide}
         disabled={isLoading}
         aria-label="Anterior"
@@ -183,7 +183,7 @@
       <div class="flex space-x-2">
         {#each Array(maxIndex + 1) as _, index}
           <button
-            class="w-2 h-2 rounded-full transition-all duration-300 {currentIndex === index ? 'bg-purple-400 w-6' : 'bg-gray-600 hover:bg-gray-500'}"
+            class="w-2 h-2 rounded-full transition-all duration-300 {currentIndex === index ? 'bg-sky-600 w-6' : 'bg-gray-600 hover:bg-gray-500'}"
             on:click={() => goToSlide(index)}
             disabled={isLoading}
             aria-label={`Ir al slide ${index + 1}`}
@@ -192,7 +192,7 @@
       </div>
       
       <button
-        class="glass-effect glass-dark p-2 rounded-full hover:glass-purple transition-all transform hover:scale-110 disabled:opacity-50"
+        class="bg-gray-300 border border-gray-400 hover:bg-gray-400 p-2 rounded-full hover:glass-purple transition-all transform disabled:opacity-50"
         on:click={nextSlide}
         disabled={isLoading}
         aria-label="Siguiente"
@@ -222,7 +222,7 @@
             role="button"
             tabindex="0"
           >
-            <div class="glass-effect glass-dark hover:glass-blue transform group-hover:scale-105 transition-all duration-300 group-hover:glow-effect rounded-xl overflow-hidden h-full">
+            <div class="bg-gray-200 hover:bg-gray-100 border border-gray-300 transform group-hover:scale-105 transition-all duration-300 group-hover:glow-effect rounded-xl overflow-hidden h-full">
               <div class="aspect-square overflow-hidden relative">
                 {#if !loadedImages.has(cat.id)}
                   <div class="w-full h-full bg-gray-800 flex items-center justify-center">
@@ -264,17 +264,17 @@
               </div>
               
               <div class="p-4">
-                <h3 class="font-semibold text-white group-hover:text-blue-200 transition-colors truncate">
+                <h3 class="font-semibold text-gray-800 group-hover:text-sky-600 transition-colors truncate">
                   Gato #{cat.id}
                 </h3>
-                <p class="text-sm text-gray-400">
+                <p class="text-sm text-gray-600">
                   {cat.data.width} × {cat.data.height} px
                 </p>
                 
                 <div class="mt-2">
                   <div class="w-full bg-gray-700 rounded-full h-1">
                     <div 
-                      class="bg-gradient-to-r from-blue-500 to-purple-500 h-1 rounded-full transition-all duration-1000"
+                      class="bg-gradient-to-r from-sky-600 to-purple-500 h-1 rounded-full transition-all duration-1000"
                       style="width: {((cat.data.width + cat.data.height) % 100)}%"
                     ></div>
                   </div>
@@ -299,15 +299,15 @@
         class="sr-only"
       />
       <div class="relative">
-        <div class="w-10 h-6 bg-gray-600 rounded-full shadow-inner transition-colors duration-300 {autoSlide ? 'bg-purple-600' : ''}"></div>
-        <div class="absolute w-4 h-4 bg-white rounded-full shadow top-1 transition-transform duration-300 {autoSlide ? 'transform translate-x-4' : 'left-1'}"></div>
+        <div class="w-10 h-6 bg-gray-600 rounded-full shadow-inner transition-colors duration-300 {autoSlide ? 'bg-sky-600' : ''}"></div>
+        <div class="absolute w-4 h-4 bg-white rounded-full shadow top-1 transition-transform duration-300 {autoSlide ? 'transform translate-x-5' : 'left-1'}"></div>
       </div>
-      <span class="text-sm text-gray-300">Auto-deslizar</span>
+      <span class="text-sm text-gray-600">Auto-deslizar</span>
     </label>
   </div>
 
 
-  <div class="mt-6 pt-4 border-t border-gray-700/50 text-xs text-gray-500 text-center">
+  <div class="mt-6 pt-4 border-t border-gray-300 text-xs text-gray-600 text-center">
     <span>
       Mostrando {itemsPerView} de {cats.length} gatos • 
       Slide {currentIndex + 1} de {maxIndex + 1}

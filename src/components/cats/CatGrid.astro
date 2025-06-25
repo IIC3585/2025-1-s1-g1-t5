@@ -10,7 +10,7 @@ const { cats } = Astro.props;
   {cats.map((cat) => (
     <div class="group cursor-pointer">
       <a href={`/cats/${cat.id}`} class="block">
-        <div class="glass-effect glass-dark hover:glass-purple transform group-hover:scale-105 transition-all duration-300 group-hover:glow-effect rounded-xl overflow-hidden">
+        <div class="bg-gray-100 border border-gray-300 transform group-hover:scale-105 transition-all duration-300 group-hover:glow-effect rounded-xl overflow-hidden">
           <div class="aspect-square overflow-hidden relative">
             <img 
               src={cat.data.url} 
@@ -19,16 +19,16 @@ const { cats } = Astro.props;
               loading="lazy"
             />
             {cat.data.url.includes('.gif') && (
-              <div class="absolute top-2 right-2 glass-effect px-2 py-1 rounded-full text-xs font-medium text-yellow-200 border border-yellow-300/30">
+              <div class="absolute top-2 right-2 glass-effect px-2 py-1 rounded-full text-xs font-medium text-yellow-500 border border-yellow-300 bg-yellow-200/30">
                 GIF
               </div>
             )}
           </div>
           <div class="p-4">
-            <h3 class="font-semibold text-white group-hover:text-purple-200 transition-colors truncate">
+            <h3 class="font-semibold text-gray-800 group-hover:text-sky-600 transition-colors truncate">
               Gato #{cat.id}
             </h3>
-            <p class="text-sm text-gray-400">
+            <p class="text-sm text-gray-600">
               {cat.data.width} x {cat.data.height}
             </p>
           </div>

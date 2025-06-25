@@ -31,7 +31,7 @@ const { data, relatedMovies = [] } = Astro.props;
           class="w-full h-auto max-h-[600px] object-contain bg-gray-900"
           loading="eager"
         />
-        <div class="absolute bottom-4 left-4 glass-effect glass-purple px-3 py-1 rounded-full text-sm font-medium text-purple-200 border border-purple-300/30">
+        <div class="absolute bottom-4 left-4 glass-effect glass-purple px-3 py-1 rounded-full text-sm font-medium text-purple-200 border border-purple-200">
           {data.major_genre}
         </div>
       </div>
@@ -40,44 +40,44 @@ const { data, relatedMovies = [] } = Astro.props;
 
   <!-- Datos -->
   <div class="space-y-6">
-    <div class="glass-effect glass-purple p-6 rounded-2xl">
-      <h1 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+    <div class="bg-gray-100 border border-gray-300 p-6 rounded-2xl">
+      <h1 class="text-3xl font-bold text-gray-800 mb-4 flex items-center gap-3">
         🎬 {data.title}
       </h1>
 
       <div class="space-y-4">
-        <div class="glass-effect glass-dark p-4 rounded-lg">
-          <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+        <div class="bg-gray-200 p-4 rounded-lg border border-gray-300">
+          <h3 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
             💰 Presupuesto
           </h3>
-          <p class="text-white text-lg">${data.production_budget.toLocaleString()}</p>
+          <p class="text-gray-600 text-lg">${data.production_budget.toLocaleString()}</p>
         </div>
 
-        <div class="glass-effect glass-dark p-4 rounded-lg">
-          <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+        <div class="bg-gray-200 p-4 rounded-lg border border-gray-300">
+          <h3 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
             🌍 Taquilla
           </h3>
-          <div class="space-y-2 text-sm text-white">
+          <div class="space-y-2 text-sm text-gray-600">
             <div class="flex justify-between">
-              <span class="text-white">USA:</span>
+              <span class="text-gray-600">USA:</span>
               <span>${data.us_gross.toLocaleString()}</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-white">Mundial:</span>
+              <span class="text-gray-600">Mundial:</span>
               <span>${data.worldwide_gross.toLocaleString()}</span>
             </div>
           </div>
         </div>
 
-        <div class="glass-effect glass-dark p-4 rounded-lg">
-          <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+        <div class="bg-gray-200 p-4 rounded-lg border border-gray-300">
+          <h3 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
             🗓️ Fecha de estreno
           </h3>
-          <p class="text-white text-lg">{data.release_date}</p>
+          <p class="text-gray-600 text-lg">{data.release_date}</p>
         </div>
 
-        <div class="glass-effect glass-dark p-4 rounded-lg">
-          <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+        <div class="bg-gray-200 p-4 rounded-lg border border-gray-300">
+          <h3 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
             ⭐ IMDb
           </h3>
           <MovieRating client:visible rating={data.imdb_rating} votes={data.imdb_votes} />
@@ -89,7 +89,7 @@ const { data, relatedMovies = [] } = Astro.props;
     <div class="space-y-3">
       <a 
         href="/movies"
-        class="block w-full glass-effect glass-green text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
+        class="block w-full bg-green-500 hover:bg-green-400 text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
       >
         🏠 Volver al listado
       </a>
@@ -99,8 +99,8 @@ const { data, relatedMovies = [] } = Astro.props;
 
 {relatedMovies.length > 0 && (
   <div class="mt-12">
-    <div class="glass-effect glass-blue p-6 rounded-2xl">
-      <h2 class="text-2xl font-bold text-white mb-6 text-center">
+    <div class="bg-gray-100 border border-gray-300 p-6 rounded-2xl">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
         Películas relacionadas
       </h2>
       <RelatedMovies movies={relatedMovies} client:visible />

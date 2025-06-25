@@ -30,7 +30,7 @@
         <div class="flex justify-between h-16">
             <div class="flex items-center">
                 <a href="/" class="text-xl font-semibold ">
-                <img src="/favicon.svg" alt="Logo" class="h-8 w-8 inline-block mr-2 align-middle" />
+                <img src="/favicon.svg" alt="Logo" class="h-8 w-8 inline-block mr-2 align-middle invert" />
                 <span class="align-middle">Inicio</span>
                 </a>
             </div>
@@ -39,7 +39,7 @@
                 {#each navItems as item}
                     <a 
                         href={item.path} 
-                        class="px-3 py-2 hover:text-purple-200"
+                        class="px-3 py-2 hover:text-sky-600"
                         title={item.description}
                     >
                         {item.name}
@@ -72,7 +72,7 @@
     </div>
     
     {#if mobileMenuOpen}
-        <div class="md:hidden bg-purple/30 backdrop-blur-md">
+        <div class="md:hidden backdrop-blur-md">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 {#each navItems as item}
                     <a

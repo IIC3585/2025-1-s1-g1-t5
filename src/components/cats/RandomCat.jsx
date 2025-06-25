@@ -17,7 +17,7 @@ export default function RandomCat({ cats }) {
 
   return (
     <div className="max-w-2xl mx-auto" data-island="RandomCat" data-framework="react">
-      <div className="glass-effect glass-dark rounded-2xl overflow-hidden hover:glow-effect transition-all duration-300">
+      <div className="bg-gray-100 border border-gray-300 rounded-2xl overflow-hidden hover:glow-effect transition-all duration-300">
         <div className="relative">
           {isLoading ? (
             <div className="aspect-square bg-gray-800 flex items-center justify-center">
@@ -34,11 +34,11 @@ export default function RandomCat({ cats }) {
                 className="w-full h-full object-cover"
               />
               {isGif ? (
-                <div className="absolute top-4 right-4 glass-effect px-3 py-1 rounded-full text-sm font-medium text-yellow-200 border border-yellow-300/30">
+                <div className="absolute top-4 right-4 glass-effect px-3 py-1 rounded-full text-sm font-medium text-yellow-600 border border-yellow-400 bg-yellow-200/50">
                   GIF
                 </div>
               ) : (
-                <div className="absolute top-4 right-4 glass-effect px-3 py-1 rounded-full text-sm font-medium text-blue-200 border border-blue-300/30">
+                <div className="absolute top-4 right-4 glass-effect px-3 py-1 rounded-full text-sm font-medium text-blue-600 border border-blue-400 bg-blue-200/50">
                   Imagen
                 </div>
               )}
@@ -47,10 +47,10 @@ export default function RandomCat({ cats }) {
         </div>
         
         <div className="p-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-2">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">
             Gato #{currentCat.id}
           </h2>
-          <p className="text-gray-400 mb-6">
+          <p className="text-gray-600 mb-6">
             {currentCat.width} x {currentCat.height}px • {isGif ? 'GIF' : 'Imagen'}
           </p>
           
@@ -58,7 +58,7 @@ export default function RandomCat({ cats }) {
             <button 
               onClick={getRandomCat}
               disabled={isLoading}
-              className="w-full glass-effect glass-purple text-white py-4 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none inline-flex items-center justify-center"
+              className="w-full bg-purple-500 hover:bg-purple-400 border border-purple-600 text-white py-4 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none inline-flex items-center justify-center"
             >
               {isLoading ? (
                 <>
@@ -77,14 +77,14 @@ export default function RandomCat({ cats }) {
             
             <a 
               href={`/cats/${currentCat.id}`}
-              className="block w-full glass-effect glass-blue text-white py-3 rounded-lg font-medium hover:glow-effect transition-all transform hover:scale-105"
+              className="block w-full bg-sky-500 hover:bg-sky-400 border border-sky-600 text-white py-3 rounded-lg font-medium hover:glow-effect transition-all transform hover:scale-105"
             >
               📄 Ver página completa (SSG)
             </a>
           </div>
           
-          <div className="mt-6 pt-4 border-t border-gray-700">
-            <p className="text-xs text-gray-500">
+          <div className="mt-6 pt-4 border-t border-gray-300">
+            <p className="text-xs text-gray-600">
               🏝️ Componente React hidratado • Estado local interactivo
             </p>
           </div>

@@ -32,13 +32,13 @@ const relatedCats = allCats
         
         <nav class="mb-8">
         <div class="flex items-center justify-between">
-            <a href="/cats/gallery" class="glass-effect glass-dark px-4 py-2 rounded-lg text-purple-300 hover:text-white transition-colors flex items-center gap-2">
+            <a href="/cats/gallery" class="bg-gray-200 border border-gray-300 hover:bg-sky-500 px-4 py-2 rounded-lg text-gray-600 hover:text-white transition-colors flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
                 Volver a la galería
             </a>
-            <div class="text-sm text-gray-400">
+            <div class="text-sm text-gray-600">
                 Página {allCats.findIndex(c => c.id === cat.id) + 1} de {allCats.length}
             </div>
         </div>
@@ -68,52 +68,52 @@ const relatedCats = allCats
             </div>
             
             <div class="space-y-6">
-                <div class="glass-effect glass-purple p-6 rounded-2xl">
-                <h1 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+                <div class="bg-gray-100 border border-gray-300 p-6 rounded-2xl">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4 flex items-center gap-3">
                     🐱 Gato {cat.id}
                 </h1>
                 
                 <div class="space-y-4">
-                    <div class="glass-effect glass-dark p-4 rounded-lg">
-                    <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                    <div class="bg-gray-200 border border-gray-300 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
                         📐 Dimensiones
                     </h3>
-                    <p class="text-white text-lg">{cat.data.width} × {cat.data.height} px</p>
-                    <p class="text-gray-400 text-sm">
+                    <p class="text-gray-600 text-lg">{cat.data.width} × {cat.data.height} px</p>
+                    <p class="text-gray-500 text-sm">
                         Ratio: {(cat.data.width / cat.data.height).toFixed(2)}:1
                     </p>
                     </div>
                     
-                    <div class="glass-effect glass-dark p-4 rounded-lg">
-                    <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                    <div class="bg-gray-200 border border-gray-300 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
                         🎨 Tipo de archivo
                     </h3>
                     <div class="flex items-center gap-2">
                         <span class={`px-3 py-1 rounded-full text-sm font-medium ${
                         isGif 
-                            ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-400/30' 
-                            : 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
+                            ? 'bg-yellow-200 text-yellow-800 border border-yellow-500' 
+                            : 'bg-blue-200 text-blue-800 border border-blue-500'
                         }`}>
                         {isGif ? 'GIF' : 'Imagen'}
                         </span>
                     </div>
                     </div>
 
-                    <div class="glass-effect glass-dark p-4 rounded-lg">
-                    <h3 class="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                    <div class="bg-gray-200 border border-gray-300 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
                         📊 Estadísticas
                     </h3>
                     <div class="space-y-2 text-sm">
                         <div class="flex justify-between">
-                        <span class="text-gray-400">Orientación:</span>
-                        <span class="text-white">
+                        <span class="text-gray-600">Orientación:</span>
+                        <span class="text-gray-500">
                             {cat.data.width > cat.data.height ? 'Horizontal' : 
                             cat.data.width < cat.data.height ? 'Vertical' : 'Cuadrada'}
                         </span>
                         </div>
                         <div class="flex justify-between">
-                        <span class="text-gray-400">Resolución:</span>
-                        <span class="text-white">
+                        <span class="text-gray-600">Resolución:</span>
+                        <span class="text-gray-500">
                             {cat.data.width * cat.data.height > 1000000 ? 'Alta' : 
                             cat.data.width * cat.data.height > 300000 ? 'Media' : 'Baja'}
                         </span>
@@ -129,21 +129,21 @@ const relatedCats = allCats
                     href={cat.data.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="block w-full glass-effect glass-blue text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
+                    class="block w-full bg-sky-500 hover:bg-sky-400 border border-sky-600 text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
                 >
                     🔗 Ver imagen original
                 </a>
                 
                 <button 
                     onclick="if(navigator.share) navigator.share({title: 'Mira este gato adorable', text: 'Página generada con Astro SSG', url: window.location.href}); else alert('Función de compartir no disponible');"
-                    class="block w-full glass-effect glass-pink text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
+                    class="block w-full bg-orange-500 hover:bg-orange-400 border border-orange-600 text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
                 >
                     📤 Compartir gato
                 </button>
 
                 <a 
                     href="/cats/random" 
-                    class="block w-full glass-effect glass-green text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
+                    class="block w-full bg-green-500 hover:bg-green-400 border border-green-600 text-white text-center py-3 rounded-lg font-semibold hover:glow-effect transition-all transform hover:scale-105"
                 >
                     🎲 Gato aleatorio
                 </a>
@@ -152,8 +152,8 @@ const relatedCats = allCats
         </div>
 
         <div class="mb-12">
-            <div class="glass-effect glass-purple p-6 rounded-2xl">
-                <h2 class="text-2xl font-bold text-white mb-4 text-center">
+            <div class="bg-gray-100 border border-gray-300 p-6 rounded-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
                 ¿Qué te parece este gato?
                 </h2>
                 <CatReactions catId={cat.id} client:load />
@@ -162,8 +162,8 @@ const relatedCats = allCats
 
         {relatedCats.length > 0 && (
         <div class="mb-12">
-            <div class="glass-effect glass-blue p-6 rounded-2xl">
-                <h2 class="text-2xl font-bold text-white mb-6 text-center">
+            <div class="bg-gray-100 border border-gray-300 p-6 rounded-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
                     Gatos relacionados
                 </h2>
                 <RelatedCats cats={relatedCats} client:visible />
@@ -175,7 +175,7 @@ const relatedCats = allCats
         {allCats.findIndex(c => c.id === cat.id) > 0 && (
             <a 
             href={`/cats/${allCats[allCats.findIndex(c => c.id === cat.id) - 1].id}`}
-            class="glass-effect glass-dark px-6 py-3 rounded-lg text-white hover:glow-effect transition-all flex items-center gap-2"
+            class="bg-gray-200 hover:bg-sky-500 hover:text-white border border-gray-300 px-6 py-3 rounded-lg text-gray-600 hover:glow-effect transition-all flex items-center gap-2"
             >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -187,7 +187,7 @@ const relatedCats = allCats
         {allCats.findIndex(c => c.id === cat.id) < allCats.length - 1 && (
             <a 
             href={`/cats/${allCats[allCats.findIndex(c => c.id === cat.id) + 1].id}`}
-            class="glass-effect glass-dark px-6 py-3 rounded-lg text-white hover:glow-effect transition-all flex items-center gap-2"
+            class="bg-gray-200 hover:bg-sky-500 hover:text-white border border-gray-300 px-6 py-3 rounded-lg text-gray-600 hover:glow-effect transition-all flex items-center gap-2"
             >
                 Siguiente
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

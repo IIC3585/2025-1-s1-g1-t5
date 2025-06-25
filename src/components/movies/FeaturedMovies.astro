@@ -8,7 +8,7 @@ const { movies } = Astro.props;
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
   {movies.map((movie) => (
-    <div class="glass-effect glass-dark hover:glass-purple group cursor-pointer transform hover:scale-105 transition-all duration-300 hover:glow-effect rounded-2xl overflow-hidden">
+    <div class="bg-gray-100 border border-gray-300 group cursor-pointer transform hover:scale-105 transition-all duration-300 hover:glow-effect rounded-2xl overflow-hidden">
       <a href={`/movies/${movie.data.slug}`} class="block">
         <div class="aspect-[2/3] overflow-hidden">  <!-- poster vertical -->
           <img
@@ -19,15 +19,15 @@ const { movies } = Astro.props;
           />
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-purple-200 transition-colors">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2 group-hover:text-sky-600 transition-colors">
             {movie.data.title}
           </h3>
-          <p class="text-gray-400 mb-4">{movie.data.major_genre}</p>
+          <p class="text-gray-600 mb-4">{movie.data.major_genre}</p>
           <div class="flex justify-between items-center">
-            <span class="glass-effect px-3 py-1 rounded-full text-sm text-purple-200 border border-purple-300/30">
+            <span class="glass-effect bg-gray-50 px-3 py-1 rounded-full text-sm text-sky-600 border border-gray-300">
               ⭐ {movie.data.imdb_rating}
             </span>
-            <span class="text-purple-300 text-sm font-medium group-hover:text-white transition-colors">
+            <span class="text-sky-600 text-sm font-medium group-hover:text-sky-800 transition-colors">
               Ver detalles →
             </span>
           </div>
