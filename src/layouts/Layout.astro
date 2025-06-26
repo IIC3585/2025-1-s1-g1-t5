@@ -22,8 +22,8 @@ const { title, description = "Astro Demo" } = Astro.props;
   </head>
   <body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 min-h-screen flex flex-col text-white debug-islands">
     <Navbar client:load />
-    <main  class="flex-grow py-2 px-4 sm:px-8 flex flex-col items-center justify-center">
-      <div class="absolute inset-0 overflow-hidden">
+    <main  class="flex-grow py-2 px-4 sm:px-8 flex flex-col items-center justify-center isolate">
+      <div class="fixed -z-50 inset-0 overflow-hidden">
       {[...Array(25)].map((_) => (
         <div 
           class="absolute rounded-full bg-indigo-500 opacity-20 animate-bounce "
